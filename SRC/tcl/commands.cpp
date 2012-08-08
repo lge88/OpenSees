@@ -3587,13 +3587,17 @@ specifyIntegrator(ClientData clientData, Tcl_Interp *interp, int argc,
 	switch(argc)
 	{
 		case 3:
-		    	theStaticIntegrator = new HSConstraint(arcLength);       
+		    	theStaticIntegrator = new HSConstraint(arcLength);
+		    	break;
 		case 4:
 		      	theStaticIntegrator = new HSConstraint(arcLength, psi_u);       
+		      	break;
 		case 5:
 		      	theStaticIntegrator = new HSConstraint(arcLength, psi_u, psi_f);       
+		      	break;
 		case 6:
 		      	theStaticIntegrator = new HSConstraint(arcLength, psi_u, psi_f, u_ref);       
+		      	break;
 	}
     // if the analysis exists - we want to change the Integrator
     if (theStaticAnalysis != 0)
