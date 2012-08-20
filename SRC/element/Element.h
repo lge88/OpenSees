@@ -105,6 +105,9 @@ class Element : public DomainComponent
 
     virtual int addResistingForceToNodalReaction(int flag);
 
+    // Add JSON interface: Li Ge, UCSD
+    virtual char *toJSON(void);
+
   protected:
     const Vector &getRayleighDampingForces(void);
 

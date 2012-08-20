@@ -246,7 +246,15 @@ numFact(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
 int 
 numIter(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
 
+// Add JSON interface: Li Ge, UCSD
+//int
+//nodesToJson(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
+//
+//int
+//elementsToJson(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
 
+int
+modelToJSON(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
 
 
 

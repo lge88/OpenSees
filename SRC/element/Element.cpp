@@ -599,7 +599,6 @@ double Element::getCharacteristicLength(void)
     Vector iCoords = nodeI->getCrds();
     int iDOF = nodeI->getNumberDOF();
     for (int j=i+1; j<numNodes; j++) {
-      Node *nodeJ = theNodes[j];
       Vector jCoords = nodeI->getCrds();      
       int jDOF = nodeI->getNumberDOF();
       double ijLength = 0;
@@ -614,5 +613,34 @@ double Element::getCharacteristicLength(void)
   return cLength;
 }
       
+// Add JSON interface: Li Ge, UCSD
+char*
+Element::toJSON(void) {
+	char buffer[100];
+	char result[300];
+	int i;
+	int size;
+	const ID *nids= NULL;
+	nids=&(this->getExternalNodes());
+	size = nids->Size();
+	strcpy(result,"{");
 
+	sprintf(buffer, "\"id\":%d,", this->getTag());
+	strcat(result,buffer);
 
+	sprintf(buffer, "\"type\":\"%s\",",this->getClassType());
+	strcat(result,buffer);
+
+	strcat(result,"\"conn\":[");
+	for (i = 0; i < size; i++) {
+		if (i==size-1) {
+			sprintf(buffer, "%d", (*nids)(i));
+		} else {
+			sprintf(buffer, "%d,", (*nids)(i));
+		}
+		strcat(result,buffer);
+	}
+	strcat(result,"]");
+	strcat(result,"}");
+	return result;
+}
