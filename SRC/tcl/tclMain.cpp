@@ -201,6 +201,7 @@ void g3TclMain(int argc, char **argv, Tcl_AppInitProc * appInitProc, int rank,
 	char buffer[1000], *args;
 	int code, gotPartial, tty, length;
 	int exitCode = 0;
+	bool enable_prompt = true;
 	Tcl_Channel inChannel, outChannel, errChannel;
 	Tcl_Interp *interp;
 	Tcl_DString argString;
@@ -231,6 +232,9 @@ void g3TclMain(int argc, char **argv, Tcl_AppInitProc * appInitProc, int rank,
 	Tcl_FindExecutable(argv[0]);
 	interp = Tcl_CreateInterp();
 
+	if (strcmp(argv[1], "--no-prompt") == 0) {
+		enable_prompt = false;
+	}
 	numParam = OpenSeesParseArgv(argc, argv);
 
 #ifdef TCL_MEM_DEBUG
@@ -360,7 +364,7 @@ void g3TclMain(int argc, char **argv, Tcl_AppInitProc * appInitProc, int rank,
 	outChannel = Tcl_GetStdChannel(TCL_STDOUT);
 	gotPartial = 0;
 	while (1) {
-//		if (tty) {
+		if (tty) {
 			Tcl_Obj *promptCmdPtr;
 
 			char one[12] = "tcl_prompt1";
@@ -368,7 +372,7 @@ void g3TclMain(int argc, char **argv, Tcl_AppInitProc * appInitProc, int rank,
 			promptCmdPtr = Tcl_GetVar2Ex(interp, (gotPartial ? one : two), NULL,
 					TCL_GLOBAL_ONLY);
 			if (promptCmdPtr == NULL) {
-				defaultPrompt: if (!gotPartial && outChannel) {
+				defaultPrompt: if (!gotPartial && outChannel && enable_prompt) {
 					Tcl_WriteChars(outChannel, "OpenSees > ", 11);
 				}
 			} else {
@@ -391,7 +395,7 @@ void g3TclMain(int argc, char **argv, Tcl_AppInitProc * appInitProc, int rank,
 			if (outChannel) {
 				Tcl_Flush(outChannel);
 			}
-//		}
+		}
 		if (!inChannel) {
 			goto done;
 		}
