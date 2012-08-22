@@ -232,7 +232,7 @@ void g3TclMain(int argc, char **argv, Tcl_AppInitProc * appInitProc, int rank,
 	Tcl_FindExecutable(argv[0]);
 	interp = Tcl_CreateInterp();
 
-	if (strcmp(argv[1], "--no-prompt") == 0) {
+	if (argc > 1 && strcmp(argv[1], "--no-prompt") == 0) {
 		enable_prompt = false;
 	}
 	numParam = OpenSeesParseArgv(argc, argv);
