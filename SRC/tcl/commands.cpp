@@ -9319,7 +9319,7 @@ int modelToJSON(ClientData clientData, Tcl_Interp *interp, int argc,
 		TCL_Char **argv) {
 	char result[RESULT_LEN];
 	char buffer[BUFFER_LEN];
-	sprintf(result, "{");
+	sprintf(result, "JSON:{");
 	theNodesToJson(buffer);
 	strcat(result, buffer);
 	strcat(result, ",");
