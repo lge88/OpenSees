@@ -4,3 +4,6 @@
 /Debug
 /Builds
 /.settings
+*.o
+*.a
+OpenSees

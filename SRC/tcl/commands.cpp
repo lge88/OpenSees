@@ -9249,7 +9249,6 @@ char *theElementsToJson(char *strptr) {
 	ElementIter &theEles = theDomain.getElements();
 	Element *theEle;
 	const ID *nids = NULL;
-	char eleType[40];
 	char buffer[40];
 	int size;
 	int ne = theDomain.getNumElements();
@@ -9265,7 +9264,6 @@ char *theElementsToJson(char *strptr) {
 		size = nids->Size();
 		sprintf(buffer, "\"%d\":", eid);
 		strcat(strptr, buffer);
-		strcpy(eleType, theEle->getClassType());
 		strcat(strptr, theEle->toJSON());
 		if (j < ne) {
 			strcat(strptr, ",");
