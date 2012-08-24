@@ -256,6 +256,9 @@ numIter(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
 int
 modelToJSON(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
 
+int
+jsonLoad(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
+
 
 
 

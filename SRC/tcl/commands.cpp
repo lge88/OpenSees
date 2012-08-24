@@ -834,6 +834,8 @@ int OpenSeesAppInit(Tcl_Interp *interp) {
 // add JSON interface: Li Ge, UCSD
 	Tcl_CreateCommand(interp, "modelToJSON", &modelToJSON, (ClientData) NULL,
 			(Tcl_CmdDeleteProc *) NULL);
+	Tcl_CreateCommand(interp, "json-load", &jsonLoad, (ClientData) NULL,
+			(Tcl_CmdDeleteProc *) NULL);
 
 #ifdef _RELIABILITY
 	Tcl_CreateCommand(interp, "wipeReliability", wipeReliability,
@@ -9325,6 +9327,22 @@ int modelToJSON(ClientData clientData, Tcl_Interp *interp, int argc,
 	theElementsToJson(buffer);
 	strcat(result, buffer);
 	strcat(result, "}");
+	Tcl_AppendResult(interp, result, NULL);
+	return TCL_OK;
+}
+
+int jsonLoad(ClientData clientData, Tcl_Interp *interp, int argc,
+		TCL_Char **argv) {
+	char result[RESULT_LEN];
+	char buffer[BUFFER_LEN];
+	sprintf(result, "JSON:{\"operation\":\"load\",\"parameters\":{");
+	theNodesToJson(buffer);
+	strcat(result, buffer);
+	strcat(result, ",");
+	memset(buffer, 0, BUFFER_LEN*sizeof(char));
+	theElementsToJson(buffer);
+	strcat(result, buffer);
+	strcat(result, "}}");
 	Tcl_AppendResult(interp, result, NULL);
 	return TCL_OK;
 }
