@@ -1,6 +1,6 @@
 include ../../Makefile.def
 
-INCLUDES = -I.
+# INCLUDES = -I.
 
 CFLAGS = $(COPTIONS) $(OPTFLAGS) $(INCLUDES)
 LD = $(CC) -L. 
@@ -25,6 +25,8 @@ all: $(OBJS)
 
 clean:
 	rm -f *.o
+
+wipe: clean
 
 realclean:
 	rm -f *.o ; rm -f ../libmetis.a

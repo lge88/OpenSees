@@ -10,9 +10,10 @@ OBJS       = ProfileSPDLinSOE.o \
 	ProfileSPDLinSubstrSolver.o \
 	ProfileSPDLinDirectBlockSolver.o \
 	ProfileSPDLinDirectSkypackSolver.o \
-	ProfileSPDLinSolverGather.o \
-	ProfileSPDLinSOEGather.o \
 	DistributedProfileSPDLinSOE.o
+
+# ProfileSPDLinSolverGather.o \
+# ProfileSPDLinSOEGather.o \
 
 all:         $(OBJS)
 

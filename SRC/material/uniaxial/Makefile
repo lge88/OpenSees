@@ -30,7 +30,6 @@ include ../../../Makefile.def
 	DrainMaterial.o \
 	BoucWenMaterial.o \
 	SecantConcrete.o \
-	HardeningMaterial2.o \
 	Pinching4Material.o \
 	BarSlipMaterial.o \
 	FatigueMaterial.o \
@@ -46,17 +45,10 @@ include ../../../Makefile.def
 	HyperbolicGapMaterial.o \
 	TclHyperbolicGapMaterial.o \
 	ImpactMaterial.o \
-	TclImpactMaterial.o \
-	KinematicHardening.o \
-	TclKinematicHardening.o \
 	NewUniaxialMaterial.o \
-	TclNewUnixialMaterial.o \
 	ReinforcingSteel.o \
 	TclReinforcingSteel.o \
-	PenaltyMaterial.o \
 	ContinuumUniaxial.o \
-	WrappedMaterial.o \
-	SecantMaterial.o \
 	Concrete01WithSITC.o \
 	Concrete05.o \
 	ECC01.o \
@@ -68,10 +60,19 @@ include ../../../Makefile.def
 	WrapperUniaxialMaterial.o \
 	SAWSMaterial.o \
 	ConfinedConcrete01.o \
-	ConfinedConcrete02.o \
 	pyUCLA.o \
 	Dodd_Restrepo.o DoddRestrepo.o \
         TclModelBuilderUniaxialMaterialCommand.o
+
+# HardeningMaterial2.o \
+# TclImpactMaterial.o \
+# KinematicHardening.o \
+# TclKinematicHardening.o \
+# TclNewUnixialMaterial.o \
+# PenaltyMaterial.o \
+# WrappedMaterial.o \
+# SecantMaterial.o \
+# ConfinedConcrete02.o \
 
 all:         $(OBJS)
 	@$(CD) $(FE)/material/uniaxial/fedeas; $(MAKE);

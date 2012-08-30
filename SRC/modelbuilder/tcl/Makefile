@@ -12,6 +12,7 @@ all: $(OBJS)
 
 tcl: $(OBJS) 
 	@$(CD) $(FE)/tcl; $(MAKE) tcl;
+	@$(CD) $(FE)/tcl/extended; $(MAKE);
 	@$(LINKER) $(LINKFLAGS) $(INTERPRETER_LIBS_TCL) \
 	$(FE_LIBRARY) $(MACHINE_LINKLIBS) \
 	$(MACHINE_NUMERICAL_LIBS) $(TCL_LIBRARY)  \
@@ -68,10 +69,13 @@ GRAPHIC_LIBS_TCL = $(FE)/tcl/TclFeViewer.o \
 
 endif
 
+INTERPRETER_LIBS_TCL_EXTENDED = $(FE)/tcl/extendedCommands.o \
+$(FE)/tcl/extended/jsonDomain.o
 
 INTERPRETER_LIBS_TCL = $(FE)/tcl/tclMain.o \
 	$(FE)/tcl/tclAppInit.o \
 	$(FE)/tcl/commands.o \
+	$(INTERPRETER_LIBS_TCL_EXTENDED) \
 	$(FE)/modelbuilder/tcl/myCommands.o $(GRAPHIC_LIBS_TCL)
 
 INTERPRETER_LIBS_MPI = $(FE)/tcl/tclMain.o \

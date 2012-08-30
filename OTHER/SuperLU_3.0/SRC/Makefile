@@ -44,7 +44,7 @@ double: $(DLUSRC) $(ALLAUX) $(DZLAUX)
 ##################################
 # Do not optimize this routine   #
 ##################################
-dlamch.o: dlamch.c ; $(CC) -c $<
+# dlamch.o: dlamch.c ; $(CC) -c $<
 
 clean:	
 	@$(RM) $(RMFLAGS) *.o

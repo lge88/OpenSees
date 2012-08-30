@@ -5,120 +5,43 @@ include ../Makefile.def
 
 endif
 
+FE_DIRS+=$(FE)/matrix
+FE_DIRS+=$(FE)/database
+FE_DIRS+=$(FE)/system_of_eqn
+FE_DIRS+=$(FE)/modelbuilder
+FE_DIRS+=$(FE)/tagged
+FE_DIRS+=$(FE)/material
+FE_DIRS+=$(FE)/analysis
+FE_DIRS+=$(FE)/graph
+FE_DIRS+=$(FE)/utility
+FE_DIRS+=$(FE)/convergenceTest
+FE_DIRS+=$(FE)/recorder
+FE_DIRS+=$(FE)/tcl
+FE_DIRS+=$(FE)/renderer
+FE_DIRS+=$(FE)/domain
+FE_DIRS+=$(FE)/handler
+FE_DIRS+=$(FE)/actor
+FE_DIRS+=$(FE)/machine
+FE_DIRS+=$(FE)/element
+FE_DIRS+=$(FE)/coordTransformation
+FE_DIRS+=$(FE)/api
+FE_DIRS+=$(FE)/damage
+
 ifeq ($(RELIABILITY), YES_RELIABILITY)
 
-all:
-	@$(RM) $(RMFLAGS) $(FE_LIBRARY);
-	@$(CD) $(FE)/matrix; $(MAKE);
-	@$(CD) $(FE)/database; $(MAKE);
-	@$(CD) $(FE)/system_of_eqn; $(MAKE);
-	@$(CD) $(FE)/modelbuilder; $(MAKE);
-	@$(CD) $(FE)/tagged; $(MAKE);
-	@$(CD) $(FE)/material; $(MAKE);
-	@$(CD) $(FE)/analysis; $(MAKE);
-	@$(CD) $(FE)/graph; $(MAKE);
-	@$(CD) $(FE)/utility; $(MAKE);
-	@$(CD) $(FE)/convergenceTest; $(MAKE)
-	@$(CD) $(FE)/recorder; $(MAKE);
-	@$(CD) $(FE)/tcl; $(MAKE);
-	@$(CD) $(FE)/renderer; $(MAKE);
-	@$(CD) $(FE)/domain; $(MAKE);
-	@$(CD) $(FE)/handler; $(MAKE);
-	@$(CD) $(FE)/actor; $(MAKE);
-	@$(CD) $(FE)/machine; $(MAKE);
-	@$(CD) $(FE)/element; $(MAKE);
-	@$(CD) $(FE)/coordTransformation; $(MAKE);
-	@$(CD) $(FE)/api; $(MAKE);
-	@$(CD) $(FE)/damage; $(MAKE);
-	@$(CD) $(FE)/api; $(MAKE);
-	@$(CD) $(FE)/reliability; $(MAKE);
-	@$(CD) $(FE)/optimization; $(MAKE);
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(MATRIX_LIBS) 
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(ELE_LIBS) 
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(MATERIAL_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(SECTION_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(DATABASE_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(FEDEAS_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(MODEL_BUILDER_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(DOMAIN_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(PY_SJB_RWB_BJ_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(ANALYSIS_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(SysOfEqn_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(GRAPH_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(TAGGED_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(UTILITY_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(ACTOR_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(RECORDER_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(LAW_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(GGD_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(RENDERER_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(REMO_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(GLF_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(ZHY_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(ERRORHANDLER_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(DRAIN_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(SNAP_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(FMK_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(KJE_LIBS)
-	@$(RANLIB) $(RANLIBFLAGS) $(FE_LIBRARY)
-
-else
-
-all:
-	@$(RM) $(RMFLAGS) $(FE_LIBRARY);
-	@$(CD) $(FE)/matrix; $(MAKE);
-	@$(CD) $(FE)/database; $(MAKE);
-	@$(CD) $(FE)/system_of_eqn; $(MAKE);
-	@$(CD) $(FE)/modelbuilder; $(MAKE);
-	@$(CD) $(FE)/tagged; $(MAKE);
-	@$(CD) $(FE)/material; $(MAKE);
-	@$(CD) $(FE)/analysis; $(MAKE);
-	@$(CD) $(FE)/graph; $(MAKE);
-	@$(CD) $(FE)/utility; $(MAKE);
-	@$(CD) $(FE)/convergenceTest; $(MAKE);
-	@$(CD) $(FE)/recorder; $(MAKE);
-	@$(CD) $(FE)/tcl; $(MAKE);
-	@$(CD) $(FE)/renderer; $(MAKE);
-	@$(CD) $(FE)/domain; $(MAKE);
-	@$(CD) $(FE)/handler; $(MAKE);
-	@$(CD) $(FE)/actor; $(MAKE);
-	@$(CD) $(FE)/machine; $(MAKE);
-	@$(CD) $(FE)/element; $(MAKE);
-	@$(CD) $(FE)/coordTransformation; $(MAKE);
-	@$(CD) $(FE)/api; $(MAKE);
-	@$(CD) $(FE)/damage; $(MAKE);
-	@$(CD) $(FE)/api; $(MAKE);
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(MATRIX_LIBS) 
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(ELE_LIBS) 
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(MATERIAL_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(SECTION_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(DATABASE_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(FEDEAS_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(MODEL_BUILDER_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(DOMAIN_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(PY_SJB_RWB_BJ_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(ANALYSIS_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(SysOfEqn_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(GRAPH_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(TAGGED_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(UTILITY_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(ACTOR_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(RECORDER_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(LAW_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(GGD_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(RENDERER_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(REMO_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(GLF_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(ZHY_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(ERRORHANDLER_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(DRAIN_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(SNAP_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(FMK_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(KJE_LIBS)
-	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(ACTOR_LIBS)
-	@$(RANLIB) $(RANLIBFLAGS) $(FE_LIBRARY)
+FE_DIRS+=$(FE)/reliability
+FE_DIRS+=$(FE)/optimization
 
 endif
+
+all:
+	@(for f in $(FE_DIRS);do $(CD) $$f; $(MAKE);done);
+	@$(AR) $(ARFLAGS) $(FE_LIBRARY) $(FE_LIBS)
+	@$(RANLIB) $(RANLIBFLAGS) $(FE_LIBRARY)
+
+lib-list:
+	rm -rf liblist.txt
+	echo $(FE_LIBS) > liblist.txt
 
 skypack:
 	@$(CD) $(HOME)/lib; rm -f $(HOME)/lib/libskypack.a;
@@ -472,7 +395,6 @@ ELE_LIBS   =  $(FE)/element/Element.o \
 	$(FE)/element/elastomericBearing/ElastomericBearing3d.o \
 	$(FE)/element/elastomericBearing/TclElastomericBearingCommand.o \
 	$(FE)/element/frictionBearing/MultiFP2d.o \
-	$(FE)/element/frictionBearing/TripleFrictionPendulum.o \
 	$(FE)/element/frictionBearing/TFP_Bearing.o \
 	$(FE)/element/frictionBearing/TFP_Bearing2d.o \
 	$(FE)/element/frictionBearing/TPB1D.o \
@@ -482,6 +404,7 @@ ELE_LIBS   =  $(FE)/element/Element.o \
 	$(FE)/element/frictionBearing/SingleFPSimple2d.o \
 	$(FE)/element/frictionBearing/SingleFPSimple3d.o \
 	$(FE)/element/frictionBearing/TclSingleFPCommand.o \
+	$(FE)/element/frictionBearing/TripleFrictionPendulum.o \
 	$(FE)/element/frictionBearing/frictionModel/CoulombFriction.o \
 	$(FE)/element/frictionBearing/frictionModel/FrictionModel.o \
 	$(FE)/element/frictionBearing/frictionModel/FrictionResponse.o \
@@ -965,6 +888,34 @@ ACTOR_LIBS = $(FE)/actor/channel/Channel.o \
 	$(FE)/actor/shadow/Shadow.o \
 	$(FE)/actor/address/ChannelAddress.o
 
+FE_LIBS+=$(MATRIX_LIBS)
+FE_LIBS+=$(ELE_LIBS)
+FE_LIBS+=$(MATERIAL_LIBS)
+FE_LIBS+=$(SECTION_LIBS)
+FE_LIBS+=$(DATABASE_LIBS)
+FE_LIBS+=$(FEDEAS_LIBS)
+FE_LIBS+=$(MODEL_BUILDER_LIBS)
+FE_LIBS+=$(DOMAIN_LIBS)
+FE_LIBS+=$(PY_SJB_RWB_BJ_LIBS)
+FE_LIBS+=$(ANALYSIS_LIBS)
+FE_LIBS+=$(SysOfEqn_LIBS)
+FE_LIBS+=$(GRAPH_LIBS)
+FE_LIBS+=$(TAGGED_LIBS)
+FE_LIBS+=$(UTILITY_LIBS)
+FE_LIBS+=$(ACTOR_LIBS)
+FE_LIBS+=$(RECORDER_LIBS)
+FE_LIBS+=$(LAW_LIBS)
+FE_LIBS+=$(GGD_LIBS)
+FE_LIBS+=$(RENDERER_LIBS)
+FE_LIBS+=$(REMO_LIBS)
+FE_LIBS+=$(GLF_LIBS)
+FE_LIBS+=$(ZHY_LIBS)
+FE_LIBS+=$(ERRORHANDLER_LIBS)
+FE_LIBS+=$(DRAIN_LIBS)
+FE_LIBS+=$(SNAP_LIBS)
+FE_LIBS+=$(FMK_LIBS)
+FE_LIBS+=$(KJE_LIBS)
+
 # Miscellaneous
 
 tidy:
@@ -977,29 +928,7 @@ spotless: clean
 	@rm -f $(PROGRAM) fake
 
 wipe: spotless
-	@$(CD) $(FE)/material; $(MAKE) wipe;
-	@$(CD) $(FE)/analysis; $(MAKE) wipe;
-	@$(CD) $(FE)/graph; $(MAKE) wipe;
-	@$(CD) $(FE)/actor; $(MAKE) wipe;
-	@$(CD) $(FE)/utility; $(MAKE) wipe;
-	@$(CD) $(FE)/tcl; $(MAKE) wipe;
-	@$(CD) $(FE)/system_of_eqn; $(MAKE) wipe;
-	@$(CD) $(FE)/tagged; $(MAKE) wipe;
-	@$(CD) $(FE)/domain; $(MAKE) wipe;
-	@$(CD) $(FE)/modelbuilder; $(MAKE) wipe;
-	@$(CD) $(FE)/matrix; $(MAKE) wipe;
-	@$(CD) $(FE)/convergenceTest; $(MAKE) wipe;
-	@$(CD) $(FE)/database; $(MAKE) wipe;
-	@$(CD) $(FE)/recorder; $(MAKE) wipe;
-	@$(CD) $(FE)/renderer; $(MAKE) wipe;
-	@$(CD) $(FE)/handler; $(MAKE) wipe;
-	@$(CD) $(FE)/machine; $(MAKE) wipe;
-	@$(CD) $(FE)/coordTransformation; $(MAKE) wipe;
-	@$(CD) $(FE)/element; $(MAKE) wipe;
-	@$(CD) $(FE)/reliability; $(MAKE) wipe;
-	@$(CD) $(FE)/optimization; $(MAKE) wipe;
-	@$(CD) $(FE)/api; $(MAKE) wipe;
-	@$(CD) $(FE)/damage; $(MAKE) wipe;
+	@(for f in $(FE_DIRS);do $(CD) $$f; $(MAKE) wipe;done);
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 

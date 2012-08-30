@@ -14,12 +14,13 @@ OBJS       = SectionForceDeformation.o \
 	FiberSection2d.o \
 	FiberSection3d.o \
 	Bidirectional.o \
-	Elliptical.o \
 	FiberSectionGJ.o \
 	TimoshenkoSection3d.o \
 	WFFiberSection2d.o \
 	Isolator2spring.o \
 	ParallelSection.o
+
+# Elliptical.o \
 
 all:         $(OBJS)
 	@$(CD) $(FE)/material/section/repres; $(MAKE);

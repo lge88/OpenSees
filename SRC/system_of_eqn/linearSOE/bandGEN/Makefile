@@ -1,10 +1,16 @@
 include ../../../../Makefile.def
 
+# OBJS       = BandGenLinSOE.o \
+# 	BandGenLinSolver.o \
+# 	BandGenLinLapackSolver.o \
+# 	DistributedBandGenLinSOE.o \
+# 	BandGenLinSOE_Single.o
+
+
 OBJS       = BandGenLinSOE.o \
 	BandGenLinSolver.o \
 	BandGenLinLapackSolver.o \
-	DistributedBandGenLinSOE.o \
-	BandGenLinSOE_Single.o
+	DistributedBandGenLinSOE.o
 
 all:    $(OBJS)
 
