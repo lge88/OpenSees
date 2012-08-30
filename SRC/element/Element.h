@@ -40,7 +40,8 @@
 #include <ID.h>
 
 #include <DomainComponent.h>
-
+#include <string>
+using namespace std;
 class Matrix;
 class Vector;
 class Renderer;
@@ -106,7 +107,7 @@ class Element : public DomainComponent
     virtual int addResistingForceToNodalReaction(int flag);
 
     // Add JSON interface: Li Ge, UCSD
-    virtual char *toJSON(void);
+    virtual string toJSON(void);
 
   protected:
     const Vector &getRayleighDampingForces(void);

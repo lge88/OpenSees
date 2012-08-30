@@ -44,6 +44,11 @@
 #include <Node.h>
 #include <Domain.h>
 
+// #include <iostream>
+#include <sstream>
+#include <string>
+using namespace std;
+
 Element  *ops_TheActiveElement = 0;
 
 Matrix **Element::theMatrices; 
@@ -614,33 +619,45 @@ double Element::getCharacteristicLength(void)
 }
       
 // Add JSON interface: Li Ge, UCSD
-char*
+// char*
+string
 Element::toJSON(void) {
-	char buffer[100];
-	char result[300];
+	// char buffer[100];
+	// char result[300];
 	int i;
 	int size;
-	const ID *nids= NULL;
-	nids=&(this->getExternalNodes());
+	const ID *nids = NULL;
+	nids = &(this->getExternalNodes());
 	size = nids->Size();
-	strcpy(result,"{");
-
-	sprintf(buffer, "\"id\":%d,", this->getTag());
-	strcat(result,buffer);
-
-	sprintf(buffer, "\"type\":\"%s\",",this->getClassType());
-	strcat(result,buffer);
-
-	strcat(result,"\"conn\":[");
+    std::ostringstream s;
+    i = this->getTag();
+    string str = this->getClassType();
+    s << "{\"id\":" << i << ",";
+    s << "{\"type\":" << str << ",";
+    s << "{\"conn\":[";
 	for (i = 0; i < size; i++) {
 		if (i==size-1) {
-			sprintf(buffer, "%d", (*nids)(i));
+			// sprintf(buffer, "%d", (*nids)(i));
+            s << (*nids)(i);
 		} else {
-			sprintf(buffer, "%d,", (*nids)(i));
+			// sprintf(buffer, "%d,", (*nids)(i));
+            s << (*nids)(i) << ",";
 		}
-		strcat(result,buffer);
+		// strcat(result,buffer);
 	}
-	strcat(result,"]");
-	strcat(result,"}");
-	return result;
+    s << "]}";
+    return s.str();
+	// strcpy(result,"{");
+
+    
+	// sprintf(buffer, "\"id\":%d,", this->getTag());
+	// strcat(result,buffer);
+
+	// sprintf(buffer, "\"type\":\"%s\",",this->getClassType());
+	// strcat(result,buffer);
+
+	// strcat(result,"\"conn\":[");
+	// strcat(result,"]");
+	// strcat(result,"}");
+	// return result;
 }
