@@ -834,13 +834,6 @@ int OpenSeesAppInit(Tcl_Interp *interp) {
 	Tcl_CreateCommand(interp, "setParameter", &setParameter, (ClientData) NULL,
 			(Tcl_CmdDeleteProc *) NULL);
 
-// add JSON interface: Li Ge, UCSD
-	// Tcl_CreateCommand(interp, "modelToJSON", &modelToJSON, (ClientData) NULL,
-	// 		(Tcl_CmdDeleteProc *) NULL);
-	// Tcl_CreateCommand(interp, "json-load", &jsonLoad, (ClientData) NULL,
-	// 		(Tcl_CmdDeleteProc *) NULL);
-    createExtendedCommands(interp);
-
 #ifdef _RELIABILITY
 	Tcl_CreateCommand(interp, "wipeReliability", wipeReliability,
 			(ClientData)NULL, (Tcl_CmdDeleteProc *)NULL);
@@ -875,6 +868,11 @@ int OpenSeesAppInit(Tcl_Interp *interp) {
 	Tcl_CreateCommand(interp, "optimization", &optimization,
 			(ClientData)NULL, (Tcl_CmdDeleteProc *)NULL);
 #endif
+
+
+    // Add command extension: Li Ge, UCSD
+    createExtendedCommands(interp);
+
 
 	theAlgorithm = 0;
 	theHandler = 0;
@@ -9247,107 +9245,11 @@ int printModelGID(ClientData clientData, Tcl_Interp *interp, int argc,
 }
 // Talledo End
 
-// Add JSON interface: Li Ge, UCSD
-// #define RESULT_LEN 5000000
-// #define BUFFER_LEN 3000000
+// Export some objects for commands extensions: Li Ge, UCSD
+DirectIntegrationAnalysis *getDirectIntegrationAnalysis() {
+	return theTransientAnalysis;
+};
 
-// char *theElementsToJson(char *strptr) {
-// 	ElementIter &theEles = theDomain.getElements();
-// 	Element *theEle;
-// 	const ID *nids = NULL;
-// 	char buffer[40];
-// 	int size;
-// 	int ne = theDomain.getNumElements();
-// 	int j, eid;
-
-// 	sprintf(buffer, "\"theElements\":{");
-// 	strcat(strptr, buffer);
-// 	j = 0;
-// 	while ((theEle = theEles()) != 0) {
-// 		j++;
-// 		nids = &(theEle->getExternalNodes());
-// 		eid = theEle->getTag();
-// 		size = nids->Size();
-// 		sprintf(buffer, "\"%d\":", eid);
-// 		strcat(strptr, buffer);
-// 		strcat(strptr, theEle->toJSON());
-// 		if (j < ne) {
-// 			strcat(strptr, ",");
-// 		}
-// 	}
-// 	strcat(strptr, "}");
-// 	return strptr;
-// }
-
-// char *theNodesToJson(char *strptr) {
-// 	NodeIter &theNodes = theDomain.getNodes();
-// 	Node *theNode;
-// 	const Vector *nodalCrds = NULL;
-// 	char buffer[40];
-// //	double ctime = theDomain.getCurrentTime();
-// 	int size;
-// 	int nn = theDomain.getNumNodes();
-// 	int nid;
-// 	int i, j;
-
-// 	sprintf(buffer, "\"theNodes\":{");
-// 	strcat(strptr, buffer);
-// 	j = 0;
-// 	while ((theNode = theNodes()) != 0) {
-// 		j++;
-// 		nodalCrds = &(theNode->getCrds());
-// 		nid = theNode->getTag();
-// 		size = nodalCrds->Size();
-// 		sprintf(buffer, "\"%d\":[", nid);
-// 		strcat(strptr, buffer);
-
-// 		for (i = 0; i < size; i++) {
-// 			if (i == size - 1) {
-// 				sprintf(buffer, "%15.15f", (*nodalCrds)(i));
-// 			} else {
-// 				sprintf(buffer, "%15.15f,", (*nodalCrds)(i));
-// 			}
-// 			strcat(strptr, buffer);
-// 		}
-// 		if (j < nn) {
-// 			strcat(strptr, "],");
-// 		} else {
-// 			strcat(strptr, "]");
-// 		}
-// 	}
-// 	strcat(strptr, "}");
-// 	return strptr;
-// }
-
-// int modelToJSON(ClientData clientData, Tcl_Interp *interp, int argc,
-// 		TCL_Char **argv) {
-// 	char result[RESULT_LEN];
-// 	char buffer[BUFFER_LEN];
-// 	sprintf(result, "JSON:{");
-// 	theNodesToJson(buffer);
-// 	strcat(result, buffer);
-// 	strcat(result, ",");
-// 	memset(buffer, 0, BUFFER_LEN*sizeof(char));
-// 	theElementsToJson(buffer);
-// 	strcat(result, buffer);
-// 	strcat(result, "}");
-// 	Tcl_AppendResult(interp, result, NULL);
-// 	return TCL_OK;
-// }
-
-// int jsonLoad(ClientData clientData, Tcl_Interp *interp, int argc,
-// 		TCL_Char **argv) {
-// 	char result[RESULT_LEN];
-// 	char buffer[BUFFER_LEN];
-// 	sprintf(result, "JSON:{\"operation\":\"load\",\"parameters\":{");
-// 	theNodesToJson(buffer);
-// 	strcat(result, buffer);
-// 	strcat(result, ",");
-// 	memset(buffer, 0, BUFFER_LEN*sizeof(char));
-// 	theElementsToJson(buffer);
-// 	strcat(result, buffer);
-// 	strcat(result, "}}");
-// 	Tcl_AppendResult(interp, result, NULL);
-// 	return TCL_OK;
-// }
-
+StaticAnalysis *getStaticAnalysis() {
+	return theStaticAnalysis;
+};

@@ -2,7 +2,7 @@ include ../../Makefile.def
 
 
 OBJS       = commands.o TclFeViewer.o TclVideoPlayer.o
-
+OBJS += extendedCommands.o
 
 tcl: $(OBJS)  tclMain.o tclAppInit.o
 
@@ -18,6 +18,7 @@ ifeq ($(PROGRAMMING_MODE), PARALLEL_INTERPRETERS)
 tcl: $(OBJS) tclMain.o mpiParameterMain.o
 OBJS       = commands.o 
 endif
+
 
 java: $(OBJS)  OpenSeesEvaluator.o OpenSeesEvaluatorImpl.o
 

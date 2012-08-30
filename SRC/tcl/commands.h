@@ -34,6 +34,9 @@
 // What: "@(#) commands.C, revA"
 
 #include <OPS_Globals.h>
+// Export some objects for commands extensions: Li Ge, UCSD
+#include <DirectIntegrationAnalysis.h>
+#include <StaticAnalysis.h>
 
 int OpenSeesAppInit(Tcl_Interp *interp);
 
@@ -246,23 +249,6 @@ numFact(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
 int 
 numIter(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
 
-// Add JSON interface: Li Ge, UCSD
-//int
-//nodesToJson(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
-//
-//int
-//elementsToJson(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
-
-int
-modelToJSON(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
-
-int
-jsonLoad(ClientData clientData, Tcl_Interp *interp, int argc, TCL_Char **argv);
-
-
-
-
-
-
-
-
+// Export some objects for commands extensions: Li Ge, UCSD
+DirectIntegrationAnalysis *getDirectIntegrationAnalysis(void);
+StaticAnalysis *getStaticAnalysis(void);
