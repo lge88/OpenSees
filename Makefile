@@ -40,18 +40,7 @@ include Makefile.def
 #	make OpenSees
 ############################################################################
 
-all: 
-ifdef MKDIR
-	$(MKDIR) $(HOME)/bin
-	$(MKDIR) $(HOME)/lib
-endif
-	@( \
-	for f in $(DIRS); \
-	do \
-		$(CD) $$f; \
-		$(MAKE); \
-		$(CD) ..; \
-	done );
+all: libs
 	@$(ECHO) LIBRARIES BUILT ... NOW LINKING OpenSees PROGRAM;
 	@$(CD) $(FE)/tcl; ./OSverCreate.sh ; $(MAKE) tcl; ./OSverRemove.sh 
 	@$(CD) $(FE)/modelbuilder/tcl;  $(MAKE) tcl;
@@ -59,10 +48,6 @@ endif
 OpenSees: tcl
 
 tcl:
-ifdef MKDIR
-	$(MKDIR) $(HOME)/bin
-	$(MKDIR) $(HOME)/lib
-endif
 	@$(ECHO) Building OpenSees Program ..;
 	@$(CD) $(FE)/tcl;  $(MAKE) tcl;
 	@$(CD) $(FE)/modelbuilder/tcl;  $(MAKE) tcl;
@@ -75,7 +60,7 @@ tk:
 	@$(CD) $(FE)/modelbuilder/tcl;  $(MAKE) tk;
 
 
-libs:
+libs: clean-lib
 	@( \
 	for f in $(DIRS); \
 	do \
@@ -84,17 +69,13 @@ libs:
 		$(CD) ..; \
 	done );
 
-clean:
-	@( \
-	for f in $(DIRS); \
-	do \
-		$(CD) $$f; \
-		$(ECHO) Making lib in $$f; \
-		$(MAKE) wipe; \
-		$(CD) ..; \
-	done );
-	@$(RM) $(RMFLAGS) *.o *~ core
-	@$(CD) $(FE)/../EXAMPLES;  $(MAKE) wipe;
+clean-bin:
+	@$(RM) $(RMFLAGS) bin/*
+
+clean-lib:
+	@$(RM) $(RMFLAGS) lib/*
+
+clean: clean-bin clean-lib
 
 wipe: 
 	@( \
