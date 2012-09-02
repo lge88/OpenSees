@@ -66,7 +66,7 @@ string elementsToJSON(void) {
     ElementIter &theEles = theDomain.getElements();
 	Element *theEle;
 	const ID *nids = NULL;
-    char *eleJSON;
+    //char *eleJSON;
 	int size;
 	int ne = theDomain.getNumElements();
 	int j, eid;
@@ -90,6 +90,61 @@ string elementsToJSON(void) {
     return s.str();
 };
 
+string domainToJSON(void) {
+ NodeIter &theNodes = theDomain.getNodes();
+    Node *theNode;
+    const Vector *nodalCrds = NULL;
+    int size;
+    int nn=theDomain.getNumNodes();
+    int nid;
+    int i, j;
+    ElementIter &theEles = theDomain.getElements();
+	Element *theEle;
+	const ID *nids = NULL;
+	int ne = theDomain.getNumElements();
+	int eid;
+
+    std::ostringstream s;
+    string str;
+    s << "JSON:({\"theNodes\":{";
+    j=0;
+    while ((theNode = theNodes()) != 0) {
+        j++;
+        nodalCrds = &(theNode->getCrds());
+        nid = theNode->getTag();
+        size = nodalCrds->Size();
+        s << "\"" << nid << "\":[";
+        for (i = 0; i < size; i++) {
+            if (i==size-1) {
+                s << (*nodalCrds)(i);
+            } else {
+                s << (*nodalCrds)(i) << ",";
+            }
+        }
+        if (j<nn) {
+            s << "],";
+        } else {
+            s << "]";
+        }
+    }
+    s << "},\"theElements\":{";
+	j = 0;
+	while ((theEle = theEles()) != 0) {
+		j++;
+		nids = &(theEle->getExternalNodes());
+		eid = theEle->getTag();
+		size = nids->Size();
+        str = theEle->toJSON();
+        s << "\"" << eid << "\":" << str;
+		if (j < ne) {
+            s << ",";
+		}
+	}
+    s << "}})";
+    return s.str();
+};
+
+
 string nodesDispToJSON(void) {
     NodeIter &theNodes = theDomain.getNodes();
     Node *theNode;
@@ -101,6 +156,8 @@ string nodesDispToJSON(void) {
     int i, j;
     std::ostringstream s;
     s << "JSON:({\"time\":" << ctime << ",\"disp\":{";
+
+    //s << "JSON:({\"disp\":{";
 
     j=0;
     while ((theNode = theNodes()) != 0) {
@@ -154,6 +211,16 @@ int jsonEchoNodes(ClientData clientData, Tcl_Interp *interp, int argc,
 int jsonEchoElements(ClientData clientData, Tcl_Interp *interp, int argc,
                      TCL_Char **argv) {
     string str = elementsToJSON();
+    char * cstr;
+    cstr = new char [str.size()+1];
+    strcpy (cstr, str.c_str());
+    Tcl_AppendResult(interp, cstr, NULL);
+    return TCL_OK;
+};
+
+int jsonEchoDomain(ClientData clientData, Tcl_Interp *interp, int argc,
+                     TCL_Char **argv) {
+    string str = domainToJSON();
     char * cstr;
     cstr = new char [str.size()+1];
     strcpy (cstr, str.c_str());

@@ -11,6 +11,9 @@ int createExtendedCommands(Tcl_Interp *interp){
 	Tcl_CreateCommand(interp, "json-echo-elements", jsonEchoElements,
 			      (ClientData)NULL, (Tcl_CmdDeleteProc *)NULL);
 
+	Tcl_CreateCommand(interp, "json-echo-domain", jsonEchoDomain,
+			      (ClientData)NULL, (Tcl_CmdDeleteProc *)NULL);
+
 	/* Tcl_CreateCommand(interp, "json-echo-single-point-constraints", jsonEchoSPC, */
 	/* 		      (ClientData)NULL, (Tcl_CmdDeleteProc *)NULL); */
 

@@ -616,13 +616,18 @@ double Element::getCharacteristicLength(void)
 // Add JSON interface: Li Ge, UCSD
 char*
 Element::toJSON(void) {
-	char buffer[100];
-	char result[300];
+	char buffer[500];
+	char result[500];
 	int i;
 	int size;
 	const ID *nids= NULL;
 	nids=&(this->getExternalNodes());
 	size = nids->Size();
+
+	for(i=0; i< 300; i++) {
+		buffer[i] = 0;
+		result[i] = 0;
+	}
 	strcpy(result,"{");
 
 	sprintf(buffer, "\"id\":%d,", this->getTag());
