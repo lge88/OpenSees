@@ -91,7 +91,7 @@ string elementsToJSON(void) {
 };
 
 string domainToJSON(void) {
- NodeIter &theNodes = theDomain.getNodes();
+    NodeIter &theNodes = theDomain.getNodes();
     Node *theNode;
     const Vector *nodalCrds = NULL;
     int size;
@@ -103,10 +103,20 @@ string domainToJSON(void) {
 	const ID *nids = NULL;
 	int ne = theDomain.getNumElements();
 	int eid;
+    const Vector &theBounds = theDomain.getPhysicalBounds();
 
     std::ostringstream s;
     string str;
-    s << "JSON:({\"theNodes\":{";
+
+    s << "JSON:({\"theBounds\":[";
+    s << theBounds(0) << ",";
+    s << theBounds(1) << ",";
+    s << theBounds(2) << ",";
+    s << theBounds(3) << ",";
+    s << theBounds(4) << ",";
+    s << theBounds(5) << "]";
+        
+    s << ",\"theNodes\":{";
     j=0;
     while ((theNode = theNodes()) != 0) {
         j++;
@@ -127,6 +137,7 @@ string domainToJSON(void) {
             s << "]";
         }
     }
+
     s << "},\"theElements\":{";
 	j = 0;
 	while ((theEle = theEles()) != 0) {
@@ -219,7 +230,7 @@ int jsonEchoElements(ClientData clientData, Tcl_Interp *interp, int argc,
 };
 
 int jsonEchoDomain(ClientData clientData, Tcl_Interp *interp, int argc,
-                     TCL_Char **argv) {
+                   TCL_Char **argv) {
     string str = domainToJSON();
     char * cstr;
     cstr = new char [str.size()+1];
