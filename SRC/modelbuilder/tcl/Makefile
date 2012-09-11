@@ -70,7 +70,8 @@ GRAPHIC_LIBS_TCL = $(FE)/tcl/TclFeViewer.o \
 endif
 
 INTERPRETER_LIBS_TCL_EXTENDED = $(FE)/tcl/extendedCommands.o \
-$(FE)/tcl/extended/jsonDomain.o
+$(FE)/tcl/extended/jsonDomain.o \
+$(FE)/tcl/extended/jsonTCPStream.o
 
 INTERPRETER_LIBS_TCL = $(FE)/tcl/tclMain.o \
 	$(FE)/tcl/tclAppInit.o \

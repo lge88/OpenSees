@@ -30,6 +30,10 @@
 
 #include <OPS_Stream.h>
 #include <Vector.h>
+
+// Added to add JSON interface: Li Ge, UCSD
+#include <string>
+
 class TCP_Socket;
 
 class TCP_Stream : public OPS_Stream
@@ -54,6 +58,7 @@ class TCP_Stream : public OPS_Stream
     int attr(const char *name, double value);
     int attr(const char *name, const char *value);
     int write(Vector &data);
+    int write(std::string &s);
     
     // regular stuff
     OPS_Stream& write(const char *s, int n);

@@ -1,5 +1,6 @@
 #include "extendedCommands.h"
 #include "extended/jsonDomain.h"
+#include "extended/jsonTCPStream.h"
 /* #include "extended/jsonModelBuilder.h" */
 /* #include "extended/jsonAnalyze.h" */
 
@@ -12,6 +13,9 @@ int createExtendedCommands(Tcl_Interp *interp){
 			      (ClientData)NULL, (Tcl_CmdDeleteProc *)NULL);
 
 	Tcl_CreateCommand(interp, "json-echo-domain", jsonEchoDomain,
+			      (ClientData)NULL, (Tcl_CmdDeleteProc *)NULL);
+    
+	Tcl_CreateCommand(interp, "json-set-tcp", jsonTCPStream,
 			      (ClientData)NULL, (Tcl_CmdDeleteProc *)NULL);
 
 	/* Tcl_CreateCommand(interp, "json-echo-single-point-constraints", jsonEchoSPC, */

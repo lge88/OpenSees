@@ -1,7 +1,7 @@
 include ../../../Makefile.def
 
 
-OBJS       = jsonDomain.o
+OBJS       = jsonDomain.o jsonTCPStream.o
 
 all: $(OBJS)
 

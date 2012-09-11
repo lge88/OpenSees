@@ -26,6 +26,10 @@
 
 #include <TCP_Stream.h>
 #include <Vector.h>
+// Added to add JSON interface: Li Ge, UCSD
+#include <string>
+#include <cstring>
+
 #include <iostream>
 #include <iomanip>
 #include <ID.h>
@@ -148,6 +152,20 @@ TCP_Stream::write(Vector &dataToSend)
   }
     
   return 0;
+}
+
+// Added to add JSON interface: Li Ge, UCSD
+
+int
+TCP_Stream::write(std::string &s)
+{
+    char * cstr;
+    int size = s.size();
+    cstr = new char [size + 1];
+    strcpy (cstr, s.c_str());
+    Message *m = new Message(cstr, size);
+    theChannel->sendMsg(0, 0, *m, 0);
+    return 0;
 }
 
 OPS_Stream& 

@@ -17,11 +17,14 @@ using namespace std;
 #include <MP_ConstraintIter.h>
 #include <MP_Constraint.h>
 #include <DirectIntegrationAnalysis.h>
+#include <TCP_Stream.h>
 extern Domain theDomain;
 #include "jsonDomain.h"
+#include "jsonTCPStream.h"
 
 string nodesToJSON(void);
 string elementsToJSON(void);
+string domainToJSON(void);
 string spcsToJSON(void);
 string mpcsToJSON(void);
 string patternsToJSON(void);
@@ -236,6 +239,14 @@ int jsonEchoDomain(ClientData clientData, Tcl_Interp *interp, int argc,
     cstr = new char [str.size()+1];
     strcpy (cstr, str.c_str());
     Tcl_AppendResult(interp, cstr, NULL);
+
+    TCP_Stream * s = getTheTCPStream();
+    s->write(str);
+    // if(s) {
+    //     // return -1;
+    // } else {
+    // }
+
     return TCL_OK;
 };
 
