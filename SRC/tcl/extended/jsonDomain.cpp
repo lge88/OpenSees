@@ -235,17 +235,20 @@ int jsonEchoElements(ClientData clientData, Tcl_Interp *interp, int argc,
 int jsonEchoDomain(ClientData clientData, Tcl_Interp *interp, int argc,
                    TCL_Char **argv) {
     string str = domainToJSON();
-    char * cstr;
-    cstr = new char [str.size()+1];
-    strcpy (cstr, str.c_str());
-    Tcl_AppendResult(interp, cstr, NULL);
+    // char * cstr;
+    // cstr = new char [str.size()+1];
+    // strcpy (cstr, str.c_str());
+    // Tcl_AppendResult(interp, cstr, NULL);
 
     TCP_Stream * s = getTheTCPStream();
-    s->write(str);
-    // if(s) {
-    //     // return -1;
-    // } else {
-    // }
+    if(s!=0) {
+        s->write(str);
+    } else {
+        char * cstr;
+        cstr = new char [str.size()+1];
+        strcpy (cstr, str.c_str());
+        Tcl_AppendResult(interp, cstr, NULL);
+    }
 
     return TCL_OK;
 };
