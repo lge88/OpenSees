@@ -111,7 +111,7 @@ string domainToJSON(void) {
     std::ostringstream s;
     string str;
 
-    s << "JSON:({\"theBounds\":[";
+    s << "|({\"theBounds\":[";
     s << theBounds(0) << ",";
     s << theBounds(1) << ",";
     s << theBounds(2) << ",";
@@ -154,7 +154,7 @@ string domainToJSON(void) {
             s << ",";
 		}
 	}
-    s << "}})";
+    s << "}})|";
     return s.str();
 };
 
@@ -169,7 +169,7 @@ string nodesDispToJSON(void) {
     int nid;
     int i, j;
     std::ostringstream s;
-    s << "JSON:({\"time\":" << ctime << ",\"disp\":{";
+    s << "|({\"time\":" << ctime << ",\"disp\":{";
 
     //s << "JSON:({\"disp\":{";
 
@@ -194,7 +194,7 @@ string nodesDispToJSON(void) {
             s << "]";
         }
     }
-    s << "}})";
+    s << "}})|";
     return s.str();
 };
 
@@ -203,10 +203,15 @@ string nodesDispToJSON(void) {
 int jsonEchoDisp(ClientData clientData, Tcl_Interp *interp, int argc,
                  TCL_Char **argv) {
     string str = nodesDispToJSON();
+    TCP_Stream * s = getTheTCPStream();
     char * cstr;
-    cstr = new char [str.size()+1];
-    strcpy (cstr, str.c_str());
-    Tcl_AppendResult(interp, cstr, NULL);
+    if(s!=0) {
+        s->write(str);
+    } else {
+        cstr = new char [str.size()+1];
+        strcpy (cstr, str.c_str());
+        Tcl_AppendResult(interp, cstr, NULL);
+    }
     return TCL_OK;
 };
 
@@ -235,21 +240,15 @@ int jsonEchoElements(ClientData clientData, Tcl_Interp *interp, int argc,
 int jsonEchoDomain(ClientData clientData, Tcl_Interp *interp, int argc,
                    TCL_Char **argv) {
     string str = domainToJSON();
-    // char * cstr;
-    // cstr = new char [str.size()+1];
-    // strcpy (cstr, str.c_str());
-    // Tcl_AppendResult(interp, cstr, NULL);
-
     TCP_Stream * s = getTheTCPStream();
+    char * cstr;
     if(s!=0) {
         s->write(str);
     } else {
-        char * cstr;
         cstr = new char [str.size()+1];
         strcpy (cstr, str.c_str());
         Tcl_AppendResult(interp, cstr, NULL);
     }
-
     return TCL_OK;
 };
 
