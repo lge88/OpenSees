@@ -48,6 +48,9 @@ class LinearSeries : public TimeSeries
 
     TimeSeries *getCopy(void);
 
+    // Add JSON interface: Li Ge, UCSD
+    const char *getClassType(void) const {return "Linear";};
+
     // method to get load factor
     double getFactor(double pseudoTime);
 

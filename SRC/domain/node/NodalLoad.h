@@ -61,6 +61,9 @@ class NodalLoad : public Load
     int            activateParameter(int parameterID);
     const Vector & getExternalForceSensitivity(int gradNumber);
     // AddingSensitivity:END ///////////////////////////////////////////
+
+    // Add JSON interface: Li Ge, UCSD
+    const Vector *getLoadValue(void) { return load; };
   protected:
 
   private:

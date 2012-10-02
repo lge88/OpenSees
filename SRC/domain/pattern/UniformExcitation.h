@@ -45,6 +45,9 @@ class UniformExcitation : public EarthquakePattern
 		      int dof, int tag, double vel0 = 0.0);  
     ~UniformExcitation();
 
+    // Add JSON interface: Li Ge, UCSD
+    const char *getClassType(void) const {return "UniformExcitation";};
+
     void setDomain(Domain *theDomain);    
     void applyLoad(double time);
     void Print(OPS_Stream &s, int flag =0);

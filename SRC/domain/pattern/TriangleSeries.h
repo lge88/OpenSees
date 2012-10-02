@@ -57,6 +57,9 @@ public:
     // destructor
     ~TriangleSeries();
 
+     // Add JSON interface: Li Ge, UCSD
+    const char *getClassType(void) const {return "Triangle";};
+
     TimeSeries *getCopy();
 
     // method to get load factor

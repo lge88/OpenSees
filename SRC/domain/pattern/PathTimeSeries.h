@@ -64,6 +64,9 @@ class PathTimeSeries : public TimeSeries
     
     // destructor    
     ~PathTimeSeries();
+
+     // Add JSON interface: Li Ge, UCSD
+    const char *getClassType(void) const {return "Path";};
     
     TimeSeries *getCopy(void);
 

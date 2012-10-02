@@ -76,7 +76,38 @@ Commands
   output: All patterns in the domain in the following format:
   JSON:({
       "thePatterns" : {
-          
+          "0" : {
+              "type" : "plain",
+              "tsTag" : 1,
+              "nodalLoads" : {
+                  "1" : [100, 0.0, 0.0],
+                  "1" : [200, 0.0, 0.0],
+                  "2" : [0.0, 10.0, 0.0],
+                  "nodeTag" : [x, y, z],
+                     ...
+              },
+              // TODO:
+              "eleLoads" : {},
+              "spLoads" : {}
+          }
+      }
+  })
+
+// TODO:
+* json-echo-time-series/json-echo-ts
+  arguments: none
+  output: All time series objects in the following format:
+  JSON:({
+      "theTimeSeries" : {
+          "0" : {
+              "type" : "linear",
+              "cFactor" : 1.0
+          },
+          "1" : {
+              "type" : "path",
+              "cFactor" : 1.0
+              "pathTimeIncr" : 0.02
+          },
       }
   })
   

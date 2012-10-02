@@ -19,6 +19,11 @@ using namespace json_spirit;
 #include <MP_ConstraintIter.h>
 #include <MP_Constraint.h>
 #include <DirectIntegrationAnalysis.h>
+#include <LoadPattern.h>
+#include <LoadPatternIter.h>
+#include <TimeSeries.h>
+#include <NodalLoad.h>
+#include <NodalLoadIter.h>
 #include <TCP_Stream.h>
 extern Domain theDomain;
 #include "jsonDomain.h"
@@ -95,32 +100,83 @@ mObject elementsToJSON(void) {
 };
 
 mObject spcsToJSON(void) {
-    NodeIter &theNodes = theDomain.getNodes();
-    Node *theNode;
-    const Vector *nodalCrds = NULL;
-    int size;
-    int i;
+    SP_ConstraintIter &theSPs = theDomain.getSPs();
+    SP_Constraint *theSP;
 
-    mObject nodes;
-    mArray coords;
-    mValue tag, coord;
+    mObject sps;
+    mArray sp_val;
+    mValue tag, ntag, dir, ref_val;
     char tag_str[15];
 
-    nodes.clear();
-    while ((theNode = theNodes()) != 0) {
-        nodalCrds = &(theNode->getCrds());
-        tag = theNode->getTag();
-        size = nodalCrds->Size();
-        coords.clear();
-        for (i = 0; i < size; i++) {
-            coord = (*nodalCrds)(i);
-            coords.push_back(coord);
-        }
+    sps.clear();
+    while ((theSP = theSPs()) != 0) {
+        sp_val.clear();
+        tag = theSP->getTag();
+        ntag = theSP->getNodeTag();
+        dir = theSP->getDOF_Number();
+        ref_val = theSP->getValue();
+        sp_val.push_back(ntag);
+        sp_val.push_back(dir);
+        sp_val.push_back(ref_val);
+
         sprintf(tag_str, "%d", tag.get_int());
-        nodes[tag_str] = coords;
+        sps[tag_str] = sp_val;
     }
 	
-    return nodes; 
+    return sps; 
+}
+
+
+mObject patternsToJSON(void) {
+    LoadPatternIter &thePatterns = theDomain.getLoadPatterns();
+    LoadPattern *thePattern;
+    TimeSeries *theSeries;
+    NodalLoadIter *nli;
+    NodalLoad *nload;
+    const Vector *load_vec; 
+    // TODO:
+    // ElementalLoadIter *eli;
+    // SP_ConstraintIter *spci;
+
+    mObject patterns, pattern, nloads;
+    mArray arr;
+    mValue tmp, tmp2, tmp3;
+    char tag_str[15];
+    int i, size;
+
+    patterns.clear();
+    while ((thePattern = thePatterns()) != 0) {
+        pattern.clear();
+        // TODO:
+        tmp = thePattern->getClassType();
+        pattern["type"] = tmp;
+        theSeries = thePattern->getTimeSeries();
+        tmp2 = theSeries->getTag();
+        sprintf(tag_str, "%d", tmp2.get_int());
+        pattern["tsTag"] = tag_str;
+
+        nli = &(thePattern->getNodalLoads());
+        nloads.clear();
+        while((nload = (*nli)()) != 0) {
+            tmp2 = nload->getNodeTag();
+            sprintf(tag_str, "%d", tmp2.get_int());
+            load_vec = nload->getLoadValue();
+            size = load_vec->Size();
+            arr.clear();
+            for (i = 0; i < size; i++) {
+                tmp3 = (*load_vec)(i);
+                arr.push_back(tmp3);
+            }
+            nloads[tag_str] = arr;
+        }
+        pattern["nodalLoads"] = nloads;
+
+        tmp2 = thePattern->getTag();
+        sprintf(tag_str, "%d", tmp2.get_int());
+        patterns[tag_str] = pattern;
+    }
+	
+    return patterns; 
 }
 
 
@@ -128,7 +184,9 @@ mObject domainToJSON(void) {
     mObject domainJSON;
     domainJSON["theBounds"] = boundsToJSON();
     domainJSON["theNodes"] = nodesToJSON();
-    domainJSON["theElements"] = elementsToJSON();    
+    domainJSON["theElements"] = elementsToJSON();
+    domainJSON["theSPConstraints"] = spcsToJSON();
+    domainJSON["thePatterns"] = patternsToJSON();
     return domainJSON;
 }
 

@@ -58,6 +58,9 @@ public:
     // destructor
     ~TrigSeries();
 
+     // Add JSON interface: Li Ge, UCSD
+    const char *getClassType(void) const {return "Trig";};
+
     TimeSeries *getCopy(); 
 
     // method to get load factor

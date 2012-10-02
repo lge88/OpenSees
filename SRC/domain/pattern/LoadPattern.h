@@ -107,6 +107,10 @@ class LoadPattern : public DomainComponent
     virtual const Vector & getExternalForceSensitivity(int gradNumber);
     // AddingSensitivity:END ///////////////////////////////////////////
 
+    // Add JSON interface: Li Ge, UCSD
+    const char *getClassType(void) const {return "Plain";};
+    virtual TimeSeries *getTimeSeries (void) { return theSeries; };
+
   protected:
     int    isConstant;     // to indictae whether setConstant has been called
 	
