@@ -44,6 +44,7 @@
 #include <Node.h>
 #include <Domain.h>
 
+
 Element  *ops_TheActiveElement = 0;
 
 Matrix **Element::theMatrices; 
@@ -614,38 +615,67 @@ double Element::getCharacteristicLength(void)
 }
       
 // Add JSON interface: Li Ge, UCSD
-char*
+// char*
+// Element::toJSON(void) {
+// 	char buffer[500];
+// 	char result[500];
+// 	int i;
+// 	int size;
+// 	const ID *nids= NULL;
+// 	nids=&(this->getExternalNodes());
+// 	size = nids->Size();
+
+// 	for(i=0; i< 300; i++) {
+// 		buffer[i] = 0;
+// 		result[i] = 0;
+// 	}
+// 	strcpy(result,"{");
+
+// 	sprintf(buffer, "\"id\":%d,", this->getTag());
+// 	strcat(result,buffer);
+
+// 	sprintf(buffer, "\"type\":\"%s\",",this->getClassType());
+// 	strcat(result,buffer);
+
+// 	strcat(result,"\"conn\":[");
+// 	for (i = 0; i < size; i++) {
+// 		if (i==size-1) {
+// 			sprintf(buffer, "%d", (*nids)(i));
+// 		} else {
+// 			sprintf(buffer, "%d,", (*nids)(i));
+// 		}
+// 		strcat(result,buffer);
+// 	}
+// 	strcat(result,"]");
+// 	strcat(result,"}");
+// 	return result;
+// }
+
+// TODO:
+json_spirit::mObject
 Element::toJSON(void) {
-	char buffer[500];
-	char result[500];
+    json_spirit::mObject ele;
 	int i;
 	int size;
 	const ID *nids= NULL;
 	nids=&(this->getExternalNodes());
 	size = nids->Size();
 
-	for(i=0; i< 300; i++) {
-		buffer[i] = 0;
-		result[i] = 0;
-	}
-	strcpy(result,"{");
+    json_spirit::mValue tag, type, id;
+    json_spirit::mArray conn;
+    char tag_str[15];
 
-	sprintf(buffer, "\"id\":%d,", this->getTag());
-	strcat(result,buffer);
-
-	sprintf(buffer, "\"type\":\"%s\",",this->getClassType());
-	strcat(result,buffer);
-
-	strcat(result,"\"conn\":[");
+    tag = this->getTag();
+    ele["id"] = tag.get_int();
+    type = this->getClassType();
+    ele["type"] = type.get_str();
+    
 	for (i = 0; i < size; i++) {
-		if (i==size-1) {
-			sprintf(buffer, "%d", (*nids)(i));
-		} else {
-			sprintf(buffer, "%d,", (*nids)(i));
-		}
-		strcat(result,buffer);
+        id = (*nids)(i);
+        conn.push_back(id);
 	}
-	strcat(result,"]");
-	strcat(result,"}");
-	return result;
+
+    ele["conn"] = conn;
+
+	return ele;
 }

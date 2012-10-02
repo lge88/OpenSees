@@ -161,4 +161,5 @@ MACHINE_SPECIFIC_LIBS   = -lssl -ldl -lm -lc \
                           -L/usr/local/lib \
                           /usr/local/lib/libgfortran.a \
                           /usr/local/lib/gcc/x86_64-apple-darwin10.7.0/4.6.0/libgcc.a \
-                          /usr/local/lib/libquadmath.a
+                          /usr/local/lib/libquadmath.a \
+                          /usr/local/lib/libjson_spirit.a

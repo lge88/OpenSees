@@ -1,8 +1,10 @@
+#include <json_spirit.h>
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <cstring>
 using namespace std;
+using namespace json_spirit;
 #include <tcl.h>
 #include <TclModelBuilder.h>
 #include <commands.h>
@@ -22,233 +24,214 @@ extern Domain theDomain;
 #include "jsonDomain.h"
 #include "jsonTCPStream.h"
 
-string nodesToJSON(void);
-string elementsToJSON(void);
-string domainToJSON(void);
-string spcsToJSON(void);
-string mpcsToJSON(void);
-string patternsToJSON(void);
-string nodesDispToJSON(void);
+mArray boundsToJSON(void);
+mObject nodesToJSON(void);
+mObject elementsToJSON(void);
+mObject spcsToJSON(void);
+mObject mpcsToJSON(void);
+mObject patternsToJSON(void);
+mObject domainToJSON(void);
+mObject nodesDispToJSON(void);
+mObject fieldsToJSON(void);
 
-string nodesToJSON(void) {
-    NodeIter &theNodes = theDomain.getNodes();
-    Node *theNode;
-    const Vector *nodalCrds = NULL;
-    int size;
-    int nn=theDomain.getNumNodes();
-    int nid;
-    int i, j;
-    std::ostringstream s;
-    s << "JSON:({\"theNodes\":{";
-
-    j=0;
-    while ((theNode = theNodes()) != 0) {
-        j++;
-        nodalCrds = &(theNode->getCrds());
-        nid = theNode->getTag();
-        size = nodalCrds->Size();
-        s << "\"" << nid << "\":[";
-        for (i = 0; i < size; i++) {
-            if (i==size-1) {
-                s << (*nodalCrds)(i);
-            } else {
-                s << (*nodalCrds)(i) << ",";
-            }
-        }
-        if (j<nn) {
-            s << "],";
-        } else {
-            s << "]";
-        }
-    }
-    s << "}})";
-    return s.str();
-};
-
-string elementsToJSON(void) {
-    ElementIter &theEles = theDomain.getElements();
-	Element *theEle;
-	const ID *nids = NULL;
-    //char *eleJSON;
-	int size;
-	int ne = theDomain.getNumElements();
-	int j, eid;
-
-    std::ostringstream s;
-    string str;
-    s << "JSON:({\"theElements\":{";
-	j = 0;
-	while ((theEle = theEles()) != 0) {
-		j++;
-		nids = &(theEle->getExternalNodes());
-		eid = theEle->getTag();
-		size = nids->Size();
-        str = theEle->toJSON();
-        s << "\"" << eid << "\":" << str;
-		if (j < ne) {
-            s << ",";
-		}
-	}
-    s << "}})";
-    return s.str();
-};
-
-string domainToJSON(void) {
-    NodeIter &theNodes = theDomain.getNodes();
-    Node *theNode;
-    const Vector *nodalCrds = NULL;
-    int size;
-    int nn=theDomain.getNumNodes();
-    int nid;
-    int i, j;
-    ElementIter &theEles = theDomain.getElements();
-	Element *theEle;
-	const ID *nids = NULL;
-	int ne = theDomain.getNumElements();
-	int eid;
+mArray boundsToJSON(void) {
     const Vector &theBounds = theDomain.getPhysicalBounds();
-
-    std::ostringstream s;
-    string str;
-
-    s << "|({\"theBounds\":[";
-    s << theBounds(0) << ",";
-    s << theBounds(1) << ",";
-    s << theBounds(2) << ",";
-    s << theBounds(3) << ",";
-    s << theBounds(4) << ",";
-    s << theBounds(5) << "]";
-        
-    s << ",\"theNodes\":{";
-    j=0;
-    while ((theNode = theNodes()) != 0) {
-        j++;
-        nodalCrds = &(theNode->getCrds());
-        nid = theNode->getTag();
-        size = nodalCrds->Size();
-        s << "\"" << nid << "\":[";
-        for (i = 0; i < size; i++) {
-            if (i==size-1) {
-                s << (*nodalCrds)(i);
-            } else {
-                s << (*nodalCrds)(i) << ",";
-            }
-        }
-        if (j<nn) {
-            s << "],";
-        } else {
-            s << "]";
-        }
+    mArray bounds;
+    mValue tmp;
+    int i;
+    bounds.clear();
+    for(i = 0; i < 6; i++) {
+        tmp = theBounds(i);
+        bounds.push_back(tmp);
     }
+    return bounds;
+}
 
-    s << "},\"theElements\":{";
-	j = 0;
+mObject nodesToJSON(void) {
+    NodeIter &theNodes = theDomain.getNodes();
+    Node *theNode;
+    const Vector *nodalCrds = NULL;
+    int size;
+    int i;
+
+    mObject nodes;
+    mArray coords;
+    mValue tag, coord;
+    char tag_str[15];
+
+    nodes.clear();
+    while ((theNode = theNodes()) != 0) {
+        nodalCrds = &(theNode->getCrds());
+        tag = theNode->getTag();
+        size = nodalCrds->Size();
+        coords.clear();
+        for (i = 0; i < size; i++) {
+            coord = (*nodalCrds)(i);
+            coords.push_back(coord);
+        }
+        sprintf(tag_str, "%d", tag.get_int());
+        nodes[tag_str] = coords;
+    }
+	
+    return nodes; 
+}
+
+mObject elementsToJSON(void) {
+    ElementIter &theEles = theDomain.getElements();
+	Element *theEle;
+
+    mObject eles;
+    mValue tag, ele;
+    char tag_str[15];
+
+    eles.clear();
 	while ((theEle = theEles()) != 0) {
-		j++;
-		nids = &(theEle->getExternalNodes());
-		eid = theEle->getTag();
-		size = nids->Size();
-        str = theEle->toJSON();
-        s << "\"" << eid << "\":" << str;
-		if (j < ne) {
-            s << ",";
-		}
+		tag = theEle->getTag();
+        ele = theEle->toJSON();
+        sprintf(tag_str, "%d", tag.get_int());
+        eles[tag_str] = ele;
 	}
-    s << "}})|";
-    return s.str();
+    return eles;
 };
 
+mObject spcsToJSON(void) {
+    NodeIter &theNodes = theDomain.getNodes();
+    Node *theNode;
+    const Vector *nodalCrds = NULL;
+    int size;
+    int i;
 
-string nodesDispToJSON(void) {
+    mObject nodes;
+    mArray coords;
+    mValue tag, coord;
+    char tag_str[15];
+
+    nodes.clear();
+    while ((theNode = theNodes()) != 0) {
+        nodalCrds = &(theNode->getCrds());
+        tag = theNode->getTag();
+        size = nodalCrds->Size();
+        coords.clear();
+        for (i = 0; i < size; i++) {
+            coord = (*nodalCrds)(i);
+            coords.push_back(coord);
+        }
+        sprintf(tag_str, "%d", tag.get_int());
+        nodes[tag_str] = coords;
+    }
+	
+    return nodes; 
+}
+
+
+mObject domainToJSON(void) {
+    mObject domainJSON;
+    domainJSON["theBounds"] = boundsToJSON();
+    domainJSON["theNodes"] = nodesToJSON();
+    domainJSON["theElements"] = elementsToJSON();    
+    return domainJSON;
+}
+
+mObject nodesDispToJSON(void) {
     NodeIter &theNodes = theDomain.getNodes();
     Node *theNode;
     const Vector *nodalResponse;
-    double ctime = theDomain.getCurrentTime();
     int size;
-    int nn=theDomain.getNumNodes();
-    int nid;
-    int i, j;
-    std::ostringstream s;
-    s << "|({\"time\":" << ctime << ",\"disp\":{";
+    int i;
 
-    //s << "JSON:({\"disp\":{";
+    mObject disp_field, result;
+    mArray nodal_disps;
+    mValue tag, disp;
+    char tag_str[15];
 
-    j=0;
+    // TODO: The field 'time' shouldn't be here, but old SketchIT depends on it, for compatibilty.
+    mValue ctime = theDomain.getCurrentTime();
+    result["time"] = ctime;
+
+    disp_field.clear();
     while ((theNode = theNodes()) != 0) {
-        j++;
         nodalResponse = theNode->getResponse(Disp);
-        nid = theNode->getTag();
         size = nodalResponse->Size();
-        s << "\"" << nid << "\":[";
-        
-        for (i = 0; i < size; i++) {
-            if (i==size-1) {
-                s << (*nodalResponse)(i);
-            } else {
-                s << (*nodalResponse)(i) << ",";
-            }
-        }
-        if (j<nn) {
-            s << "],";
-        } else {
-            s << "]";
-        }
-    }
-    s << "}})|";
-    return s.str();
-};
 
+        nodal_disps.clear();
+        for (i = 0; i < size; i++) {
+            disp = (*nodalResponse)(i);
+            nodal_disps.push_back(disp);
+        }
+
+        tag = theNode->getTag();
+        sprintf(tag_str, "%d", tag.get_int());        
+        disp_field[tag_str] = nodal_disps;
+    }
+    result["disp"] = disp_field;
+    return result;
+};
 
 
 int jsonEchoDisp(ClientData clientData, Tcl_Interp *interp, int argc,
                  TCL_Char **argv) {
-    string str = nodesDispToJSON();
-    TCP_Stream * s = getTheTCPStream();
+
+    std::ostringstream os; 
+    mObject nodeDispJSON = nodesDispToJSON();
+    os << "|(";
+    write( nodeDispJSON, os, remove_trailing_zeros);
+    os << ")|";
+    string str = os.str();
+
+    TCP_Stream * ts = getTheTCPStream();
     char * cstr;
-    if(s!=0) {
-        s->write(str);
-    } else {
-        cstr = new char [str.size()+1];
-        strcpy (cstr, str.c_str());
-        Tcl_AppendResult(interp, cstr, NULL);
-    }
+    if(ts!=0) {
+        ts->write(str);
+    } 
+
+    cstr = new char [str.size()+1];
+    strcpy (cstr, str.c_str());
+    Tcl_AppendResult(interp, cstr, NULL);
+
     return TCL_OK;
 };
 
 
 int jsonEchoNodes(ClientData clientData, Tcl_Interp *interp, int argc,
                   TCL_Char **argv) {
-    string str = nodesToJSON();
-    char * cstr;
-    cstr = new char [str.size()+1];
-    strcpy (cstr, str.c_str());
-    Tcl_AppendResult(interp, cstr, NULL);
+    // string str = nodesToJSON();
+    // char * cstr;
+    // cstr = new char [str.size()+1];
+    // strcpy (cstr, str.c_str());
+    // Tcl_AppendResult(interp, cstr, NULL);
     return TCL_OK;
 };
 
 
 int jsonEchoElements(ClientData clientData, Tcl_Interp *interp, int argc,
                      TCL_Char **argv) {
-    string str = elementsToJSON();
-    char * cstr;
-    cstr = new char [str.size()+1];
-    strcpy (cstr, str.c_str());
-    Tcl_AppendResult(interp, cstr, NULL);
+    // string str = elementsToJSON();
+    // char * cstr;
+    // cstr = new char [str.size()+1];
+    // strcpy (cstr, str.c_str());
+    // Tcl_AppendResult(interp, cstr, NULL);
     return TCL_OK;
 };
 
 int jsonEchoDomain(ClientData clientData, Tcl_Interp *interp, int argc,
                    TCL_Char **argv) {
-    string str = domainToJSON();
-    TCP_Stream * s = getTheTCPStream();
+    std::ostringstream os; 
+    mObject domainJSON = domainToJSON();
+    os << "|(";
+    write( domainJSON, os, remove_trailing_zeros);
+    os << ")|";
+    string str = os.str();
+
+    TCP_Stream * ts = getTheTCPStream();
     char * cstr;
-    if(s!=0) {
-        s->write(str);
-    } else {
-        cstr = new char [str.size()+1];
-        strcpy (cstr, str.c_str());
-        Tcl_AppendResult(interp, cstr, NULL);
-    }
+    if(ts!=0) {
+        ts->write(str);
+    } 
+
+    cstr = new char [str.size()+1];
+    strcpy (cstr, str.c_str());
+    Tcl_AppendResult(interp, cstr, NULL);
+
     return TCL_OK;
 };
 

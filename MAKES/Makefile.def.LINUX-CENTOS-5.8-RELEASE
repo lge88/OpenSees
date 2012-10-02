@@ -168,4 +168,5 @@ MACHINE_NUMERICAL_LIBS  = $(ARPACK_LIBRARY) \
 
 MACHINE_SPECIFIC_LIBS   = -lssl -ldl  -lieee -lm -lpng\
                           -lc -lg2c -Wl,-rpath,/usr/local/lib \
-                          /usr/local/mysql/lib/libmysqlclient.a
+                          /usr/local/mysql/lib/libmysqlclient.a \
+                          /usr/local/lib/libjson_spirit.a

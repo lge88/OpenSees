@@ -41,6 +41,9 @@
 
 #include <DomainComponent.h>
 
+// Add JSON interface: Li Ge, UCSD
+#include <json_spirit.h>
+
 class Matrix;
 class Vector;
 class Renderer;
@@ -106,7 +109,8 @@ class Element : public DomainComponent
     virtual int addResistingForceToNodalReaction(int flag);
 
     // Add JSON interface: Li Ge, UCSD
-    virtual char *toJSON(void);
+    /* virtual char *toJSON(void); */
+    virtual json_spirit::mObject toJSON(void);
 
   protected:
     const Vector &getRayleighDampingForces(void);
