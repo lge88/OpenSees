@@ -70,6 +70,9 @@ Journal of Structural Engineering, Approved for publication, February 2007.
 #include <SectionForceDeformation.h>
 #include <CrdTransf.h>
 
+// Add JSON interface: Li Ge, UCSD
+#include <json_spirit.h>
+
 class Response;
 class ElementalLoad;
 
@@ -131,6 +134,10 @@ class ForceBeamColumn2d: public Element
   const Matrix &getMassSensitivity(int gradNumber);
   int commitSensitivity(int gradNumber, int numGrads);
   // AddingSensitivity:END ///////////////////////////////////////////
+
+  // Add JSON interface: Li Ge, UCSD
+  /* virtual char *toJSON(void); */
+  virtual json_spirit::mObject toJSON(void);
 
  protected:
   void setSectionPointers(int numSections, SectionForceDeformation **secPtrs);

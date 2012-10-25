@@ -523,7 +523,7 @@ httpsGet(char const *URL, char const *page, char const *cookie, unsigned int por
 
   SSL *ssl;
   SSL_CTX *ctx;
-  SSL_METHOD *client_method;
+  const SSL_METHOD *client_method;
   int err;
 
   /* ******************************************************
@@ -651,7 +651,7 @@ httpsSEND(const char *URL,
 
   SSL *ssl;
   SSL_CTX *ctx;
-  SSL_METHOD *client_method;
+  const SSL_METHOD *client_method;
 
   int err;
 
@@ -810,7 +810,7 @@ httpsGET_File(char const *URL, char const *page, const char *cookie, unsigned in
 
   SSL *ssl;
   SSL_CTX *ctx;
-  SSL_METHOD *client_method;
+  const SSL_METHOD *client_method;
   int err;
 
   /* ******************************************************
@@ -931,7 +931,7 @@ httpsSEND_File(const char *URL,
   
   SSL *ssl;
   SSL_CTX *ctx;
-  SSL_METHOD *client_method;
+  const SSL_METHOD *client_method;
 
   int err;
 

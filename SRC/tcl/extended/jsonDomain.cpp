@@ -31,6 +31,7 @@ extern Domain theDomain;
 
 mArray boundsToJSON(void);
 mObject nodesToJSON(void);
+mObject massesToJSON(void);
 mObject elementsToJSON(void);
 mObject spcsToJSON(void);
 mObject mpcsToJSON(void);
@@ -38,6 +39,12 @@ mObject patternsToJSON(void);
 mObject domainToJSON(void);
 mObject nodesDispToJSON(void);
 mObject fieldsToJSON(void);
+
+// mObject sectionsToJSON(void);
+// mObject uniaxialMaterialsToJSON(void);
+// mObject uniaxialMaterialsToJSON(void);
+
+
 
 mArray boundsToJSON(void) {
     const Vector &theBounds = theDomain.getPhysicalBounds();
@@ -56,17 +63,20 @@ mObject nodesToJSON(void) {
     NodeIter &theNodes = theDomain.getNodes();
     Node *theNode;
     const Vector *nodalCrds = NULL;
+    const Matrix *mass = NULL;
     int size;
-    int i;
+    int i, ndf;
 
     mObject nodes;
     mArray coords;
-    mValue tag, coord;
+    mValue tag, coord, tmp;
     char tag_str[15];
 
     nodes.clear();
     while ((theNode = theNodes()) != 0) {
         nodalCrds = &(theNode->getCrds());
+        ndf = theNode->getNumberDOF();
+        mass = &(theNode->getMass());
         tag = theNode->getTag();
         size = nodalCrds->Size();
         coords.clear();
@@ -74,11 +84,45 @@ mObject nodesToJSON(void) {
             coord = (*nodalCrds)(i);
             coords.push_back(coord);
         }
+        for (i = 0; i < ndf; i++) {
+          tmp = (*mass)(i, i);
+          coords.push_back(tmp);
+        }
         sprintf(tag_str, "%d", tag.get_int());
         nodes[tag_str] = coords;
     }
 	
     return nodes; 
+}
+
+mObject massesToJSON(void) {
+    NodeIter &theNodes = theDomain.getNodes();
+    Node *theNode;
+    const Matrix *mass = NULL;
+
+    int i, ndf;
+
+    mObject ret;
+    mArray masses;
+    mValue tag, tmp;
+    char tag_str[15];
+
+    ret.clear();
+    while ((theNode = theNodes()) != 0) {
+        ndf = theNode->getNumberDOF();
+        mass = &(theNode->getMass());
+        tag = theNode->getTag();
+        masses.clear();
+
+        for (i = 0; i < ndf; i++) {
+          tmp = (*mass)(i, i);
+          masses.push_back(tmp);
+        }
+        sprintf(tag_str, "%d", tag.get_int());
+        ret[tag_str] = masses;
+    }
+	
+    return ret; 
 }
 
 mObject elementsToJSON(void) {
@@ -184,6 +228,7 @@ mObject domainToJSON(void) {
     mObject domainJSON;
     domainJSON["theBounds"] = boundsToJSON();
     domainJSON["theNodes"] = nodesToJSON();
+    domainJSON["theMasses"] = massesToJSON();
     domainJSON["theElements"] = elementsToJSON();
     domainJSON["theSPConstraints"] = spcsToJSON();
     domainJSON["thePatterns"] = patternsToJSON();
