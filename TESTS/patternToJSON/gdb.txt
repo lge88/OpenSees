@@ -1,0 +1,65 @@
+Breakpoint 1 at 0x60b9c9: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp, line 151.
+warning: no loadable sections found in added symbol-file system-supplied DSO at 0x2aaaaaaab000
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, patternsToJSON ()
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:151
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:151:3462:beg:0x60b9c9
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:152:3504:beg:0x60ba35
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:153:3535:beg:0x60bab8
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:154:3584:beg:0x60bb08
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:155:3620:beg:0x60bb66
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:156:3668:beg:0x60bb8a
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:158:3705:beg:0x60bc6e
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:159:3751:beg:0x60bc86
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:160:3775:beg:0x60bc92
+A debugging session is active.
+
+	Inferior 1 [process 21719] will be killed.
+
+Quit anyway? (y or n) warning: Current output protocol does not support redirection
+warning: no loadable sections found in added symbol-file system-supplied DSO at 0x2aaaaaaab000
+[Thread debugging using libthread_db enabled]
+Breakpoint 2 at 0x60bc92: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp, line 160.
+Deleted breakpoint 2 
+Breakpoint 3 at 0x60bc86: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp, line 159.
+Continuing.
+
+Breakpoint 3, patternsToJSON ()
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:159
+159	        nloads.clear();
+Continuing.
+
+Program exited normally.
+Breakpoint 1 at 0x60c831: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp, line 151.
+warning: no loadable sections found in added symbol-file system-supplied DSO at 0x2aaaaaaab000
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, spcsToJSON ()
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:151
+warning: Source file is more recent than executable.
+151	        sp_val.clear();
+A debugging session is active.
+
+	Inferior 1 [process 5268] will be killed.
+
+Quit anyway? (y or n) Breakpoint 1 at 0x60c831: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp, line 151.
+warning: no loadable sections found in added symbol-file system-supplied DSO at 0x2aaaaaaab000
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, spcsToJSON ()
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:151
+warning: Source file is more recent than executable.
+151	        sp_val.clear();
+152	        tag = theSP->getTag();
+155	        ref_val = theSP->getValue();
+156	        sp_val.push_back(ntag);
+157	        sp_val.push_back(dir);
+$1 = {<std::_Vector_base<json_spirit::Value_impl<json_spirit::Config_map<std::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::allocator<json_spirit::Value_impl<json_spirit::Config_map<std::basic_string<char, std::char_traits<char>, std::allocator<char> > > > > >> = {
+    _M_impl = {<std::allocator<json_spirit::Value_impl<json_spirit::Config_map<std::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >> = {<__gnu_cxx::new_allocator<json_spirit::Value_impl<json_spirit::Config_map<std::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >> = {<No data fields>}, <No data fields>}, _M_start = 0x0, _M_finish = 0x0, 
+      _M_end_of_storage = 0x0}}, <No data fields>}
+A debugging session is active.
+
+	Inferior 1 [process 5391] will be killed.
+
+Quit anyway? (y or n) 
