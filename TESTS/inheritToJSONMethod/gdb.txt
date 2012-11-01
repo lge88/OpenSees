@@ -1,0 +1,400 @@
+Breakpoint 1 at 0x60b9c9: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp, line 151.
+warning: no loadable sections found in added symbol-file system-supplied DSO at 0x2aaaaaaab000
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, patternsToJSON ()
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:151
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:151:3462:beg:0x60b9c9
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:152:3504:beg:0x60ba35
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:153:3535:beg:0x60bab8
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:154:3584:beg:0x60bb08
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:155:3620:beg:0x60bb66
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:156:3668:beg:0x60bb8a
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:158:3705:beg:0x60bc6e
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:159:3751:beg:0x60bc86
+/home/GL/Develop/OpenSees/SRC/tcl/extended/jsonDomain.cpp:160:3775:beg:0x60bc92
+A debugging session is active.
+
+	Inferior 1 [process 21719] will be killed.
+
+Quit anyway? (y or n) warning: Current output protocol does not support redirection
+warning: no loadable sections found in added symbol-file system-supplied DSO at 0x2aaaaaaab000
+[Thread debugging using libthread_db enabled]
+Breakpoint 2 at 0x60bc92: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp, line 160.
+Deleted breakpoint 2 
+Breakpoint 3 at 0x60bc86: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp, line 159.
+Continuing.
+
+Breakpoint 3, patternsToJSON ()
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:159
+159	        nloads.clear();
+Continuing.
+
+Program exited normally.
+warning: Current output protocol does not support redirection
+No symbol table is loaded.  Use the "file" command.
+Make breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+.gdbinit:6: Error in sourced command file:
+No executable file specified.
+Use the "file" or "exec-file" command.
+warning: Current output protocol does not support redirection
+No symbol table is loaded.  Use the "file" command.
+Make breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+.gdbinit:6: Error in sourced command file:
+No executable file specified.
+Use the "file" or "exec-file" command.
+No symbol table is loaded.  Use the "file" command.
+Make breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+.gdbinit:6: Error in sourced command file:
+No executable file specified.
+Use the "file" or "exec-file" command.
+warning: Current output protocol does not support redirection
+[Thread debugging using libthread_db enabled]
+151	        tmp = thePattern->getClassType();
+152	        pattern["type"] = tmp;
+153	        theSeries = thePattern->getTimeSeries();
+154	        tmp2 = theSeries->getTag();
+155	        sprintf(tag_str, "%d", tmp2.get_int());
+156	        pattern["tsTag"] = tag_str;
+157	
+158	        nli = &(thePattern->getNodalLoads());
+159	        nloads.clear();
+160	        while((nload = (*nli)()) != 0) {
+Cannot resolve function operator[] to any overloaded instance
+161	            tmp2 = nload->getNodeTag();
+162	            sprintf(tag_str, "%d", tmp2.get_int());
+163	            load_vec = nload->getLoadValue();
+164	            size = load_vec->Size();
+165	            arr.clear();
+166	            for (i = 0; i < size; i++) {
+167	                tmp3 = (*load_vec)(i);
+complete p
+passcount
+path
+print
+print-object
+printf
+ptype
+pwd
+python
+complete p
+passcount
+path
+print
+print-object
+printf
+ptype
+pwd
+python
+complete p
+passcount
+path
+print
+print-object
+printf
+ptype
+pwd
+python
+complete pr
+print
+print-object
+printf
+complete print
+print
+print-object
+printf
+No symbol "temp3" in current context.
+168	                arr.push_back(tmp3);
+No symbol "temp3" in current context.
+$1 = {static null = <optimized out>, v_ = {which_ = 5, storage_ = {<boost::detail::aligned_storage::aligned_storage_imp<8ul, 8ul>> = {data_ = {buf = "\000\000\000\000\000\000Y@", align_ = {<No data fields>}}}, static size = <optimized out>, static alignment = <optimized out>}}}
+complete print-
+print-object
+complete print-object
+print-object
+Value can't be converted to integer.
+complete p
+passcount
+path
+print
+print-object
+printf
+ptype
+pwd
+python
+complete p
+passcount
+path
+print
+print-object
+printf
+ptype
+pwd
+python
+complete p
+passcount
+path
+print
+print-object
+printf
+ptype
+pwd
+python
+Working directory /home/GL/Develop/OpenSees/BUILD/debug/gdb/patternToJSON.
+[Thread debugging using libthread_db enabled]
+
+Program exited normally.
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+[Thread debugging using libthread_db enabled]
+
+Program exited normally.
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+[Thread debugging using libthread_db enabled]
+
+Program exited normally.
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+Breakpoint 1 at 0x95e9dc: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp, line 3192.
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x169f760) at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject ele = Element::toJSON();
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+3194	}
+No symbol "ele" in current context.
+3189	// Add JSON interface: Li Ge, UCSD
+3190	json_spirit::mObject
+3191	ForceBeamColumn2d::toJSON(void) {
+3192	  json_spirit::mObject ele = Element::toJSON();
+3193	  return ele;
+3194	}
+3195	
+elementsToJSON () at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:96
+96	        sprintf(tag_str, "%d", tag.get_int());
+91	
+92	    eles.clear();
+93		while ((theEle = theEles()) != 0) {
+94			tag = theEle->getTag();
+95	        ele = theEle->toJSON();
+96	        sprintf(tag_str, "%d", tag.get_int());
+97	        eles[tag_str] = ele;
+98		}
+99	    return eles;
+100	};
+$1 = {static null = <optimized out>, v_ = {which_ = 0, 
+    storage_ = {<boost::detail::aligned_storage::aligned_storage_imp<8ul, 8ul>> = {data_ = {buf = "\220\241\257\001\000\000\000", 
+          align_ = {<No data fields>}}}, static size = <optimized out>, static alignment = <optimized out>}}}
+Continuing.
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x170ceb0)
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject ele = Element::toJSON();
+Undefined command: "cb".  Try "help".
+Deleted breakpoint 1 
+Continuing.
+
+Program exited normally.
+The program is not being run.
+No symbol table is loaded.  Use the "file" command.
+Make breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+.gdbinit:6: Error in sourced command file:
+No executable file specified.
+Use the "file" or "exec-file" command.
+Breakpoint 1 at 0x95e9dc: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp, line 3192.
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x169f760) at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject ele = Element::toJSON();
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+Continuing.
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x170ceb0)
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject ele = Element::toJSON();
+Continuing.
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x174c690)
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject ele = Element::toJSON();
+Continuing.
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x178be70)
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject ele = Element::toJSON();
+Continuing.
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x17cb560)
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject ele = Element::toJSON();
+No breakpoint at 1.
+Deleted breakpoint 1 
+Continuing.
+
+Program exited normally.
+Breakpoint 1 at 0x95e9dc: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp, line 3192.
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x169f760) at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject ele = Element::toJSON();
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+3187	
+3188	      
+3189	// Add JSON interface: Li Ge, UCSD
+3190	json_spirit::mObject
+3191	ForceBeamColumn2d::toJSON(void) {
+3192	  json_spirit::mObject ele = Element::toJSON();
+3193	  json_spirit::mObject prop;
+3194	  json_spirit::mValue tmp;
+3195	  json_spirit::mArray sectionIDs;
+3196	  if (sections != 0) {
+3194	  json_spirit::mValue tmp;
+elementsToJSON () at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:96
+96	        sprintf(tag_str, "%d", tag.get_int());
+97	        eles[tag_str] = ele;
+93		while ((theEle = theEles()) != 0) {
+94			tag = theEle->getTag();
+95	        ele = theEle->toJSON();
+Run till exit from #0  elementsToJSON () at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:95
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x170ceb0)
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject ele = Element::toJSON();
+3187	
+3188	      
+3189	// Add JSON interface: Li Ge, UCSD
+3190	json_spirit::mObject
+3191	ForceBeamColumn2d::toJSON(void) {
+3192	  json_spirit::mObject ele = Element::toJSON();
+3193	  json_spirit::mObject prop;
+3194	  json_spirit::mValue tmp;
+3195	  json_spirit::mArray sectionIDs;
+3196	  if (sections != 0) {
+$1 = std::map with 3 elements = {
+  ["101"] = {static null = <optimized out>, v_ = {which_ = 0, 
+      storage_ = {<boost::detail::aligned_storage::aligned_storage_imp<8ul, 8ul>> = {data_ = {
+            buf = "\240\234\257\001\000\000\000", align_ = {<No data fields>}}}, static size = <optimized out>, 
+        static alignment = <optimized out>}}},
+  [Traceback (most recent call last):
+  File "/usr/lib64/../share/gdb/python/libstdcxx/v6/printers.py", line 558, in to_string
+    return self.val['_M_dataplus']['_M_p'].lazy_string (length = len)
+RuntimeError: Cannot access memory at address 0xffffffffffffffe9
+] = {static null = <optimized out>, v_ = {which_ = 1055859408, 
+      storage_ = {<boost::detail::aligned_storage::aligned_storage_imp<8ul, 8ul>> = {data_ = {
+            buf = "\006\000\000\000\000\000\000", align_ = {<No data fields>}}}, static size = <optimized out>, 
+        static alignment = <optimized out>}}},
+  ["101"] = {static null = <optimized out>, v_ = {which_ = 0, 
+      storage_ = {<boost::detail::aligned_storage::aligned_storage_imp<8ul, 8ul>> = {data_ = {
+            buf = "\240\234\257\001\000\000\000", align_ = {<No data fields>}}}, static size = <optimized out>, 
+        static alignment = <optimized out>}}}
+}
+3194	  json_spirit::mValue tmp;
+3189	// Add JSON interface: Li Ge, UCSD
+3190	json_spirit::mObject
+3191	ForceBeamColumn2d::toJSON(void) {
+3192	  json_spirit::mObject ele = Element::toJSON();
+3193	  json_spirit::mObject prop;
+3194	  json_spirit::mValue tmp;
+3195	  json_spirit::mArray sectionIDs;
+3196	  if (sections != 0) {
+3197	    if(numSections == 1) {
+3198	      tmp = sections[0].getTag();
+elementsToJSON () at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:96
+96	        sprintf(tag_str, "%d", tag.get_int());
+97	        eles[tag_str] = ele;
+92	    eles.clear();
+93		while ((theEle = theEles()) != 0) {
+94			tag = theEle->getTag();
+95	        ele = theEle->toJSON();
+96	        sprintf(tag_str, "%d", tag.get_int());
+97	        eles[tag_str] = ele;
+98		}
+99	    return eles;
+100	};
+101	
+Continuing.
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x174c690)
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject ele = Element::toJSON();
+Undefined command: "sb".  Try "help".
+No line 3196 in file "/home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp".
+3187	
+3188	      
+3189	// Add JSON interface: Li Ge, UCSD
+3190	json_spirit::mObject
+3191	ForceBeamColumn2d::toJSON(void) {
+3192	  json_spirit::mObject ele = Element::toJSON();
+3193	  json_spirit::mObject prop;
+3194	  json_spirit::mValue tmp;
+3195	  json_spirit::mArray sectionIDs;
+3196	  if (sections != 0) {
+$2 = (SectionForceDeformation **) 0x174cb00
+$3 = true
+Undefined command: "ls".  Try "help".
+3197	    if(numSections == 1) {
+3198	      tmp = sections[0].getTag();
+3199	      prop["sectionID"] = tmp.get_int();
+3200	    } else {
+3201	      for (int i=0; i < numSections; i++) {
+3202	        if(sections[i] != 0) {
+3203	          tmp = sections[i].getTag();
+3204	          sectionIDs.push_back(tmp);
+3205	        }
+3206	      }
+Breakpoint 1 at 0x95e9e6: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp, line 3192.
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x16c0760) at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject prop;
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+The program is not being run.
+Starting program: /home/GL/bin/myopensees main.tcl
+[Thread debugging using libthread_db enabled]
+
+Program exited normally.
+Undefined command: "qqq".  Try "help".
+Breakpoint 1 at 0x95e9e6: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp, line 3192.
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x16c0760) at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject prop;
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+Continuing.
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x172deb0)
+    at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject prop;
+Delete all breakpoints? (y or n) Continuing.
+
+Program exited normally.
+Breakpoint 1 at 0x95ef0a: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp, line 3192.
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x16c0760) at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject prop;
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+Delete all breakpoints? (y or n) Continuing.
+
+Program exited normally.
+Breakpoint 1 at 0x95f03a: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp, line 3192.
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x16c0760) at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject prop;
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+Delete all breakpoints? (y or n) Continuing.
+
+Program exited normally.
+Breakpoint 1 at 0x95f04a: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp, line 3192.
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x16c0760) at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject prop;
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+Delete all breakpoints? (y or n) Continuing.
+
+Program exited normally.
+Breakpoint 1 at 0x95ef22: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp, line 3192.
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, ForceBeamColumn2d::toJSON (this=0x16c0940) at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/element/forceBeamColumn/ForceBeamColumn2d.cpp:3192
+3192	  json_spirit::mObject prop;
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libxcb-1.5-1.el6.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64

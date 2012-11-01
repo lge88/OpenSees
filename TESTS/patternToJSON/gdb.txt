@@ -62,4 +62,63 @@ A debugging session is active.
 
 	Inferior 1 [process 5391] will be killed.
 
-Quit anyway? (y or n) 
+Quit anyway? (y or n) Breakpoint 1 at 0x6117cd: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp, line 151.
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, spcsToJSON () at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:151
+151	        sp_val.clear();
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+Function "()" not defined.
+146	    mValue tag, ntag, dir, ref_val;
+147	    char tag_str[15];
+148	
+149	    sps.clear();
+150	    while ((theSP = theSPs()) != 0) {
+151	        sp_val.clear();
+152	        tag = theSP->getTag();
+153	        ntag = theSP->getNodeTag();
+154	        dir = theSP->getDOF_Number();
+155	        ref_val = theSP->getValue();
+152	        tag = theSP->getTag();
+153	        ntag = theSP->getNodeTag();
+Quit
+Breakpoint 1 at 0x6117cd: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp, line 151.
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, spcsToJSON () at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:151
+151	        sp_val.clear();
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+A debugging session is active.
+
+	Inferior 1 [process 7962] will be killed.
+
+Quit anyway? (y or n) Please answer y or n.
+A debugging session is active.
+
+	Inferior 1 [process 7962] will be killed.
+
+Quit anyway? (y or n) Breakpoint 1 at 0x6117cd: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp, line 151.
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, spcsToJSON () at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:151
+151	        sp_val.clear();
+"tui" must be followed by the name of a tui command.
+List of tui subcommands:
+
+tui reg -- TUI commands to control the register window
+
+Type "help tui" followed by tui subcommand name for full documentation.
+Type "apropos word" to search for commands related to "word".
+Command name abbreviations are allowed if unambiguous.
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64
+152	        tag = theSP->getTag();
+A debugging session is active.
+
+	Inferior 1 [process 7970] will be killed.
+
+Quit anyway? (y or n) Breakpoint 1 at 0x6117cd: file /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp, line 151.
+[Thread debugging using libthread_db enabled]
+
+Breakpoint 1, spcsToJSON () at /home/GL/Develop/OpenSees/BUILD/debug/../..//SRC/tcl/extended/jsonDomain.cpp:151
+151	        sp_val.clear();
+Missing separate debuginfos, use: debuginfo-install compat-libf2c-34-3.4.6-19.el6.x86_64 expat-2.0.1-11.el6_2.x86_64 fontconfig-2.8.0-3.el6.x86_64 freetype-2.3.11-6.el6_2.9.x86_64 glibc-2.12-1.80.el6_3.5.x86_64 keyutils-libs-1.4-4.el6.x86_64 krb5-libs-1.9-33.el6_3.3.x86_64 libX11-1.3-2.el6.x86_64 libXau-1.0.5-1.el6.x86_64 libXft-2.1.13-4.1.el6.x86_64 libXrender-0.9.5-1.el6.x86_64 libcom_err-1.41.12-12.el6.x86_64 libgcc-4.4.6-4.el6.x86_64 libpng-1.2.49-1.el6_2.x86_64 libselinux-2.0.94-5.3.el6.x86_64 libstdc++-4.4.6-4.el6.x86_64 libxcb-1.5-1.el6.x86_64 openssl-1.0.0-25.el6_3.1.x86_64 tcl-8.5.7-6.el6.x86_64 tk-8.5.7-5.el6.x86_64 zlib-1.2.3-27.el6.x86_64

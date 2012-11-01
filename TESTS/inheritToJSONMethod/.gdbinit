@@ -1,4 +1,6 @@
 set args main.tcl
 set logging on
-b jsonDomain.cpp:151
+
+b ForceBeamColumn2d.cpp:3192
+
 run
