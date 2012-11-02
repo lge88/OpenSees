@@ -5,6 +5,7 @@ MAKES_DIR=${SAVED_DIR}/MAKES
 mkdir -p ${BUILD_DIR}
 mkdir -p ${BUILD_DIR}/lib
 mkdir -p ${BUILD_DIR}/bin
-find . \( -name "Makefile*" -o -name "OSver*.sh" \) -not -wholename "*MAKES*" | cpio -pmdv ${SAVED_DIR}/${BUILD_DIR}
+find . \( -name "Makefile*" -o -name "OSver*.sh" \) -not -wholename "*MAKES*" | \
+cpio -pmdv ${SAVED_DIR}/${BUILD_DIR}
 s=${SAVED_DIR}/${BUILD_DIR};
 cat ${MAKES_DIR}/${MKDEF_FILE} | sed "s|\(BUILD_DIR\s\+\)=.*|\1= $s|" > $s/Makefile.def
